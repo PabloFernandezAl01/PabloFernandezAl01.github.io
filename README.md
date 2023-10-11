@@ -1,5 +1,4 @@
 # Game Developer Portfolio
-## Pablo Fernández Álvarez
 
 This is a Github repository to host my porftolio website through Github Pages.
 
