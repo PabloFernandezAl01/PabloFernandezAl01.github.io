@@ -1,0 +1,18 @@
+.portfolio {
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-size: 10vw;
+    font-weight: lighter;
+}
+
+ul.listmargin {
+    margin-left: 45%;
+    text-align: left;
+}
+
+div.bgimage {
+    background-image: url(../img/Juegos/BG_Porfolio.png);
+    background-repeat: no-repeat;
+    position: relative;
+}
