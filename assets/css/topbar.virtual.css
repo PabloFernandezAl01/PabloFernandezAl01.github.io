@@ -493,6 +493,10 @@
   z-index: 9;
 }
 
+.theme-red {
+  margin: 0;
+}
+
 /* Theme color style */
 /* Theme Red */
 .theme-red .badge-subhead {
