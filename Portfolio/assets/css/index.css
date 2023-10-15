@@ -1,0 +1,26 @@
+/* CSS para la vista principal */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.portfolio-container {
+    width: 100%;
+    height: 40vh;
+
+    display: flex;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+}
+
+.portfolio-container canvas {
+    background-color: rgb(153, 172, 172);
+}
+
+.portfolio-container h1 {   
+    font-size: 200px;
+    text-align: center;
+    position: absolute;
+    color: white;
+}

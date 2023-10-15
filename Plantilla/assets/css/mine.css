@@ -13,11 +13,10 @@ ul.listmargin {
 
 div.bgimage {
     background-image: url(../img/Juegos/BG_Porfolio2.png);
-    background-size: cover; /* Ajustar al tamaño de la ventana */
+    background-size: cover; /* Ajustar al tamaño de la ventana */  
     background-repeat: no-repeat; /* Evitar que se repita la imagen */
-    background-attachment: fixed;
-    max-width: 100%;
-    height: 720px;
+
+    height: 100%;
 }
 
 .circle {
