@@ -10,15 +10,31 @@
 
 </head>
 
-<body onload="init(); drawCover();">
+<!-- drawShotFight(); drawColorWave();  -->
+<body onload="init(); drawAStar()">
 
-    <main class="portfolio-container" id="portfolio-container">
-        <h1>PORTFOLIO</h1>
-        <canvas id="portfolio"></canvas>    
+    <!-- <main class="portfolio-container" id="shotfight-container">
+        <h1>SHOT FIGHT</h1>
+        <canvas id="shotfight"></canvas>    
+    </main>
+
+    <main class="portfolio-container" id="colorwave-container">
+        <h1>COLOR WAVE</h1>
+        <canvas id="colorwave"></canvas>    
+    </main> -->
+
+    <main class="portfolio-container" id="astar-container">
+        <h1>A* ALGORITHM</h1>
+        <canvas id="astar"></canvas>    
     </main>
 
     <!-- Cover behaviour -->
-    <script src="assets/js/cover.js"></script>
+    <script src="assets/js/Vector2D.js"></script>
+    <script src="assets/js/PriorityQueue.js"></script>
+    <script src="assets/js/Set.js"></script>
+    <!-- <script src="assets/js/Shotfight.js"></script>
+    <script src="assets/js/Colorwave.js"></script> -->
+    <script src="assets/js/Astar.js"></script>
     <script src="assets/js/main.js"></script>
 
 </body>
