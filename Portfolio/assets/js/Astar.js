@@ -83,6 +83,14 @@ class Grid {
 const LATERAL_WEIGHT = 1;
 const DIAGONAL_WEIGHT = Math.sqrt(2) * LATERAL_WEIGHT;
 
+const BACKGROUND_COLOR = `rgb(${18}, ${5}, ${12})`;
+const OBSTACLE_COLOR = `rgb(${61}, ${21}, ${12})`;
+const OPENLIST_COLOR = `rgb(${255}, ${234}, ${31})`;
+const CLOSEDLIST_COLOR = `rgb(${125}, ${61}, ${19})`;
+const SOLUTION_COLOR = `rgb(${255}, ${255}, ${255})`;
+const STARTCELL_COLOR = `rgb(${228}, ${219}, ${219})`;
+const ENDCELL_COLOR = `rgb(${228}, ${219}, ${219})`;
+
 class AStar {
 
     constructor() {
@@ -92,6 +100,7 @@ class AStar {
         this.openSet = new PriorityQueue();
 
         this.solution = null;
+        this.closedList = [];
 
         this.timer = 0;
 
@@ -119,77 +128,92 @@ class AStar {
         }
         while (this.solution == null);
 
-        //this.solution = null;
+        this.solution = null;
+        this.openSet.clear();
+        this.openSet.add(this.start)
+        this.closedSet = []
+        this.closedList = []
 
     }
 
     route(a, b, complete, deltaTime) {
 
-        if (a.isObstacle() || b.isObstacle()) return null;
+        if (complete) {
+            this.closedSet = [];
+            this.openSet.clear();
 
-        this.closedSet = [];
-        this.openSet.clear();
+            a.g = 0;
+            a.h = this.heuristic(a, b);
+            a.f = a.g + a.h;
 
-        a.g = 0;
-        a.h = this.heuristic(a, b);
-        a.f = a.g + a.h;
+            this.openSet.add(a);
 
-        this.openSet.add(a);
+            this.x1 = 0; this.x2 = 0;
+            this.y1 = 0; this.y2 = 0;
+            this.i = 0; this.j = 0;
+            this.node = null;
+            this.neighbor = null;
+        }
 
-        let x1, x2, y1, y2, i, j, node, neighbor;
         do {
 
             if (!complete) {
                 this.timer += deltaTime;
 
-                if (this.timer < 1)
-                    return null;    
+                if (this.timer < 0.025)
+                    break;    
                 else 
                     this.timer = 0;
             }
 
-            node = this.openSet.poll();
-      
-            if (node === b) { // check target       
+            this.node = this.openSet.poll();
+
+            if (!this.node) {
+                this.chooseRandomPoints()
+                break;
+            }
+
+            if (this.node === b) { // check target       
                 return this.backTrace(a, b);
             }
       
             // Neighbor position ranges
-            x1 = Math.max(0, node.x - 1);
-            x2 = Math.min(node.x + 2, this.grid.getCols());
+            this.x1 = Math.max(0, this.node.x - 1);
+            this.x2 = Math.min(this.node.x + 2, this.grid.getCols());
       
-            y1 = Math.max(0, node.y - 1);
-            y2 = Math.min(node.y + 2, this.grid.getRows());
+            this.y1 = Math.max(0, this.node.y - 1);
+            this.y2 = Math.min(this.node.y + 2, this.grid.getRows());
 
             // Iterate neighbors
-            for (i = x1; i < x2; ++i) {
-                for (j = y1; j < y2; ++j) {
+            for (this.i = this.x1; this.i < this.x2; ++this.i) {
+                for (this.j = this.y1; this.j < this.y2; ++this.j) {
 
-                    if (i !== node.x || j !== node.y) { // if not the same
+                    if (this.i !== this.node.x || this.j !== this.node.y) { // if not the same
 
-                        neighbor = this.grid.getNode(i, j);
+                        this.neighbor = this.grid.getNode(this.i, this.j);
         
-                        if (!neighbor.isObstacle() && !this.closedSet[neighbor.id] && !this.grid.getNode(node.x, j).isObstacle() 
-                                                && !this.grid.getNode(i, node.y).isObstacle()) { // check if node it is visitable
+                        if (!this.neighbor.isObstacle() && !this.closedSet[this.neighbor.id] && !this.grid.getNode(this.node.x, this.j).isObstacle() 
+                                                && !this.grid.getNode(this.i, this.node.y).isObstacle()) { // check if node it is visitable
                             
-                                const weight = node.x === i || node.y === j ? LATERAL_WEIGHT : DIAGONAL_WEIGHT;
-                                const g = node.g + weight;                     // Actual cost up to node n.
-                                const h = this.heuristic(neighbor, b); // Estimated cost to goal.
+                                const weight = this.node.x === this.i || this.node.y === this.j ? LATERAL_WEIGHT : DIAGONAL_WEIGHT;
+                                const g = this.node.g + weight;                     // Actual cost up to node n.
+                                const h = this.heuristic(this.neighbor, b); // Estimated cost to goal.
                                 const f = g + h;                               // Estimated cost of the solution through n.
                 
-                                if (neighbor.f > f) { // Update neighbor
-                                    neighbor.g = g;
-                                    neighbor.h = h;
-                                    neighbor.f = f;
-                                    neighbor.parent = node;  
-                                    this.openSet.remove(neighbor); 
-                                    this.openSet.add(neighbor);
-                                } else if (!this.openSet.contains(neighbor)) { // Add neighbor
-                                    neighbor.g = g;
-                                    neighbor.h = h;
-                                    neighbor.f = f;
-                                    neighbor.parent = node;            
-                                    this.openSet.add(neighbor);
+                                if (this.neighbor.f > f) { // Update neighbor
+                                    this.neighbor.g = g;
+                                    this.neighbor.h = h;
+                                    this.neighbor.f = f;
+                                    this.neighbor.parent = this.node;  
+                                    this.openSet.remove(this.neighbor); 
+                                    this.openSet.add(this.neighbor);
+                                } 
+                                else if (!this.openSet.contains(this.neighbor)) { // Add neighbor
+                                    this.neighbor.g = g;
+                                    this.neighbor.h = h;
+                                    this.neighbor.f = f;
+                                    this.neighbor.parent = this.node;            
+                                    this.openSet.add(this.neighbor);
                                 }
                             }
                     
@@ -198,77 +222,12 @@ class AStar {
                 }
             }
 
-            this.closedSet[node.id] = node; // Add node to closedSet
+            this.closedSet[this.node.id] = this.node; // Add node to closedSet
+            this.closedList.push(this.node)
 
           } while (this.openSet.size() > 0);
       
           return null;
-
-    }
-
-
-    render() {
-
-        // Dibuja el fondo
-        let color = `rgb(${185}, ${185}, ${185})`;
-
-        ASContext.fillStyle = color;
-        ASContext.fillRect(0, 0, ASCanvas.width, ASCanvas.height);
-
-        // Dibuja el mapa
-        for (let i = 0; i < this.grid.getCols(); i++) {
-            for (let j = 0; j < this.grid.getRows(); j++) {
-
-                color = `rgb(${185}, ${185}, ${185})`;
-
-                if (this.grid.getNode(i, j).obstacle) {
-                    color = `rgb(${74}, ${74}, ${74})`;
-                }
-
-                ASContext.fillStyle = color;
-                ASContext.fillRect(this.grid.colWidth * i, this.grid.rowHeight * j, this.grid.colWidth, this.grid.rowHeight);
-
-            }
-        }
-
-        const oS = this.openSet.get();
-
-        // Dibuja la lista abierta
-        for (let i = 0; i < this.openSet.size(); i++) {
-
-            let node = oS[i];
-
-            ASContext.fillStyle = `rgb(${0}, ${0}, ${255})`;
-            ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
-
-        }
-
-        // Dibuja la lista cerrada
-        for (node of this.closedSet) {
-
-            ASContext.fillStyle = `rgb(${255}, ${0}, ${0})`;
-            ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
-
-        }
-
-        // Dibuja la solucion
-        if(this.solution) {
-
-            for(let i = 0; i < this.solution.length; ++i) {
-                let node = this.solution[i];
-
-                ASContext.fillStyle = `rgb(${0}, ${255}, ${0})`;
-                ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
-
-            }
-
-        }
-
-        // Dibuja celda inicial y final
-        ASContext.fillStyle = `rgb(${255}, ${255}, ${0})`;
-        ASContext.fillRect(this.grid.colWidth * this.start.x, this.grid.rowHeight * this.start.y, this.grid.colWidth, this.grid.rowHeight);
-        ASContext.fillStyle = `rgb(${0}, ${255}, ${255})`;
-        ASContext.fillRect(this.grid.colWidth * this.end.x, this.grid.rowHeight * this.end.y, this.grid.colWidth, this.grid.rowHeight);
 
     }
 
@@ -279,7 +238,96 @@ class AStar {
 
         if (this.solution == null)
             this.solution = this.route(this.start, this.end, false, deltaTime);
+        else {
 
+            this.timer += deltaTime;
+            if (this.timer > 2) {
+                this.chooseRandomPoints();
+                this.timer = 0;
+            }
+
+        }
+
+    }
+
+
+    render() {
+        this.renderMap();
+        this.renderOpenList();
+        this.renderClosedList();
+        this.renderSolution();
+        this.renderStartAndEnd();
+    }
+
+    renderMap() {
+        // Dibuja el fondo
+        let color = BACKGROUND_COLOR;
+
+        ASContext.fillStyle = color;
+        ASContext.fillRect(0, 0, ASCanvas.width, ASCanvas.height);
+
+        // Dibuja el mapa
+        for (let i = 0; i < this.grid.getCols(); i++) {
+            for (let j = 0; j < this.grid.getRows(); j++) {
+
+                color = BACKGROUND_COLOR;
+
+                if (this.grid.getNode(i, j).obstacle) {
+                    color = OBSTACLE_COLOR;
+                }
+
+                ASContext.fillStyle = color;
+                ASContext.fillRect(this.grid.colWidth * i, this.grid.rowHeight * j, this.grid.colWidth, this.grid.rowHeight);
+
+            }
+        }
+    }
+
+    renderOpenList() {
+        const oS = this.openSet.get();
+
+        // Dibuja la lista abierta
+        for (let i = 0; i < this.openSet.size(); i++) {
+
+            let node = oS[i];
+
+            ASContext.fillStyle = OPENLIST_COLOR;
+            ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
+
+        }
+    }
+
+    renderClosedList() {
+        // Dibuja la lista cerrada
+        for (const node of this.closedList) {
+
+            ASContext.fillStyle = CLOSEDLIST_COLOR;
+            ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
+
+        }
+    }
+
+    renderSolution() {
+        // Dibuja la solucion
+        if(this.solution) {
+
+            for(let i = 0; i < this.solution.length; ++i) {
+                let node = this.solution[i];
+
+                ASContext.fillStyle = SOLUTION_COLOR;
+                ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
+
+            }
+
+        }
+    }
+
+    renderStartAndEnd() {
+        // Dibuja celda inicial y final
+        ASContext.fillStyle = STARTCELL_COLOR;
+        ASContext.fillRect(this.grid.colWidth * this.start.x, this.grid.rowHeight * this.start.y, this.grid.colWidth, this.grid.rowHeight);
+        ASContext.fillStyle = ENDCELL_COLOR;
+        ASContext.fillRect(this.grid.colWidth * this.end.x, this.grid.rowHeight * this.end.y, this.grid.colWidth, this.grid.rowHeight);
     }
 
     // Distancia de Manhattan

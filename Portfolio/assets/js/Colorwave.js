@@ -21,17 +21,17 @@ class ColorWave {
 
     constructor() {
         
-        this.rows = 360;
+        this.rows = 180;
         this.rowHeight = CWCanvas.height / this.rows;
 
-        this.columns = 1080;
+        this.columns = 360;
         this.columnWidth = CWCanvas.width / this.columns;
 
         this.hue = 0;
         this.offset = 0;
         this.direction = 1;
         this.timer = 0;
-        this.speed = 2;
+        this.speed = 50;
 
     }
 
@@ -71,7 +71,7 @@ class ColorWave {
         this.timer += deltaTime;
         if (this.timer > 0.01) {
             this.timer = 0;
-            this.offset += this.direction * this.speed;
+            this.offset += this.direction * this.speed * deltaTime;
 
             if (this.offset >= this.columns)
                 this.offset = 0;
