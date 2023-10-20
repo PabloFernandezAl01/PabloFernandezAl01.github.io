@@ -39,7 +39,6 @@ class ShotFight {
             this.availabeShots.push(this.maxShots - 1 - i);
         }
 
-
     }
 
     availableShot() {
@@ -84,7 +83,7 @@ class ShotFight {
     update(deltaTime) {
 
         this.timer += deltaTime;
-        if (this.timer >= 0.2) {
+        if (this.timer >= 0.5) {
             this.timer = 0;
             
             // 80% de posibilidades de que dispare en el lado izquierdo
@@ -100,7 +99,7 @@ class ShotFight {
 
         this.shots.forEach(function (value) {
             if (value.enabled) 
-                value.update();
+                value.update(deltaTime);
         })
 
         // Victoria azul
@@ -127,6 +126,7 @@ class Shot {
         this.shotfight = shotfight;
         this.side = 0;
         this.position = new Vector2D();
+        this.vel = 0;
     }
 
     init(side) {
@@ -144,7 +144,7 @@ class Shot {
 
 
         // Velocidad aleatoria
-        let vel = Math.random() * 5 + 3;
+        this.vel = Math.random() * 300 + 200;
 
 
         let anguloA = this.side ? 170 : -10;
@@ -158,7 +158,7 @@ class Shot {
         let angulo = Math.random() * (anguloA - anguloB) + anguloB;
 
         // Direccion del disparo
-        this.dir = new Vector2D(Math.cos(angulo) * vel, Math.sin(angulo) * vel)
+        this.dir = new Vector2D(Math.cos(angulo), Math.sin(angulo))
 
 
         // Color dependiendo del lado
@@ -183,9 +183,9 @@ class Shot {
 
     }
 
-    update() {
+    update(deltaTime) {
 
-        this.position.add(this.dir);
+        this.position.add(this.dir.mul(this.vel * deltaTime));
         this.disableOnBecameInvisible();
         this.disableOnCollision();
 

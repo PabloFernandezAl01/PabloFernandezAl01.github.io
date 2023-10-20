@@ -25,6 +25,14 @@ class Vector2D {
     }
 
     /**
+     * Mul the vector by a scalar
+     * @param {} scalar 
+     */
+    mul(scalar) {
+        return new Vector2D(this.x * scalar, this.y * scalar)
+    }
+
+    /**
      * Returns a new copy of the vector
      */
     clone() {

@@ -38,32 +38,35 @@ class ColorWave {
     render () {
 
         // Vertical
-        // for (let i = 0; i < this.rows; i++) {
+        for (let i = 0; i < this.rows; i++) {
 
-        //     this.hue = 360 / this.rows * i + 360 / this.rows * this.offset;
+            this.hue = 360 / this.rows * i + 360 / this.rows * this.offset;
 
-        //     let rgb = hsvToRgb(this.hue, 0.8, 0.6);
+            let rgb = hsvToRgb(this.hue, 0.8, 0.6);
 
-        //     CWContext.fillStyle = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-        //     CWContext.fillRect(0, this.rowHeight * i, CWCanvas.width, this.rowHeight);
-
-        // }
-
-        // Horizontal
-        for (let i = 0; i < this.columns; i++) {
-
-          this.hue = 360 / this.columns * i + 360 / this.columns * this.offset;
-
-          let rgb = hsvToRgb(this.hue, 1, 0.7);
-
-          CWContext.fillStyle = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
-          CWContext.fillRect(this.columnWidth * i, 0, this.columnWidth, CWCanvas.height);
+            CWContext.fillStyle = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+            CWContext.fillRect(0, this.rowHeight * i, CWCanvas.width, this.rowHeight);
 
         }
+
+        // Horizontal
+        // for (let i = 0; i < this.columns; i++) {
+
+        //   this.hue = 360 / this.columns * i + 360 / this.columns * this.offset;
+
+        //   let rgb = hsvToRgb(this.hue, 1, 0.7);
+
+        //   CWContext.fillStyle = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+        //   CWContext.fillRect(this.columnWidth * i, 0, this.columnWidth, CWCanvas.height);
+
+        // }
 
     }
 
     update (deltaTime) {
+
+        this.rowHeight = CWCanvas.height / this.rows;
+        this.columnWidth = CWCanvas.width / this.columns;
 
         this.timer += deltaTime;
         if (this.timer > 0.01) {

@@ -1,16 +1,12 @@
 // Animations list
-// new ShotFight(), new ColorWave()
-
 const animations = [];
 
 /**
  * Initialize the main properties
  */
 function init() {
-    const frameRate = 60;
-    this.frameInterval = 1000 / frameRate;
-    this.lastFrame = 0;
-    this.deltaTime = this.frameInterval * 0.001;
+    this.lastFrame = Date.now();
+    this.deltaTime = 1 / 60;
 }
 
 /**
@@ -47,17 +43,14 @@ function draw() {
 
     let time = Date.now();
 
-    let dif = time - this.lastFrame;
+    animations.forEach(function (value) {
+        value.update(this.deltaTime * 0.001)
+        value.render();
+    })
 
-    if (dif > this.frameInterval) {
-        this.lastFrame = time;
+    this.deltaTime = time - this.lastFrame;
 
-        animations.forEach(function (value) {
-            value.update(this.deltaTime)
-            value.render();
-        })
-
-    }
+    this.lastFrame = time;
 
     window.requestAnimationFrame(draw);
 

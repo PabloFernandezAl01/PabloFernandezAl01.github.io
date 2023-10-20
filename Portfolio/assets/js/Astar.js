@@ -18,189 +18,267 @@ window.addEventListener('resize', resizeCanvas);
 
 
 class Node {
-    constructor(x, y) {
-      this.x = x;
-      this.y = y;
-      this.g = 0; // Coste del camino desde el inicio hasta este nodo
-      this.h = 0; // Heurística: estimación del coste hasta el destino
-      this.f = 0; // F = G + H
-      this.parent = null;
+ 
+    constructor(x, y, obstacle = false) {
+        this.id = `${x},${y}`;
+        this.x = x;
+        this.y = y;
+
+        this.obstacle = obstacle;
+
+        this.f = 0; // Estimated cost of the solution through n.
+        this.g = 0; // Actual cost up to node n.
+        this.h = 0; // Estimated cost to goal.
     }
+
+    isObstacle() {
+        return this.obstacle;
+    }
+
+    compare(o) { // PriorityQueue
+        if (this.f < o.f) return -1;
+        if (this.f > o.f) return 1;
+        return this.h < o.h ? -1 : this.h === o.h ? 0 : 1;
+    }
+
 }
 
-
-class AStar {
-
+class Grid {
+    
     constructor() {
-
-        this.cols = 50;
+        this.cols = 200;
         this.rows = Math.round(this.cols / (ASCanvas.width / ASCanvas.height));
 
         this.rowHeight = ASCanvas.height / this.rows;
         this.colWidth = ASCanvas.width / this.cols;
 
+        this.nodes = [];
+        this.clear();
+
+    }
+  
+    getCols() {
+        return this.cols;
+    }
+  
+    getRows() {
+        return this.rows;
+    }
+  
+    getNode(x, y) {
+        return this.nodes[x + y * this.cols];
+    }
+  
+    clear() {
+        for(let x = 0; x < this.cols; ++x) {
+            for(let y = 0; y < this.rows; ++y) {
+                this.nodes[x + y * this.cols] = new Node(x, y);
+                this.nodes[x + y * this.cols].obstacle = Math.random() < 0.25
+            }
+        }
+    }
+
+}
+
+const LATERAL_WEIGHT = 1;
+const DIAGONAL_WEIGHT = Math.sqrt(2) * LATERAL_WEIGHT;
+
+class AStar {
+
+    constructor() {
+
+        this.grid = new Grid();
+
+        this.openSet = new PriorityQueue();
+
+        this.solution = null;
+
         this.timer = 0;
 
-        // Mapa con obstaculos
-        this.map = [];
-        this.createMap();
+        this.chooseRandomPoints();
 
-        // Atributos para el algoritmo A*
-        this.openList = new PriorityQueue();
-        this.closedList = new Set();
-        this.solution = [];
+    }
 
-        // Nodos inicial y final
-        this.start = new Node(0, 0);
-        this.end = new Node(this.cols - 1, this.rows - 1);
-        this.map[0][0] = 0;
-        this.map[this.cols - 1][this.rows - 1] = 0;
-        this.openList.enqueue(this.start, 0);
+    chooseRandomPoints() {
+        do {
+            let x1 = Math.round(Math.random() * this.grid.getCols());
+            let y1 = Math.round(Math.random() * this.grid.getRows());
 
+            let x2 = Math.round(Math.random() * this.grid.getCols());
+            let y2 = Math.round(Math.random() * this.grid.getRows());
 
+            this.start = this.grid.getNode(x1, y1);
+            this.end = this.grid.getNode(x2, y2);
 
-        while (!this.openList.isEmpty()) {
+            if (!this.start || !this.end) continue;
 
-            const currentNode = this.openList.dequeue();
-            this.closedList.add(currentNode);
+            this.start.obstacle = false;
+            this.end.obstacle = false;
 
-            // Comprueba si estamos en el nodo final
-            if (currentNode.x === this.end.x && currentNode.y === this.end.y) {
+            this.solution = this.route(this.start, this.end, true, 0);
+        }
+        while (this.solution == null);
 
-                let current = currentNode;
-                while (current) {
-                    this.solution.unshift({ x: current.x, y: current.y });
-                    current = current.parent;
-                }
+        //this.solution = null;
 
+    }
+
+    route(a, b, complete, deltaTime) {
+
+        if (a.isObstacle() || b.isObstacle()) return null;
+
+        this.closedSet = [];
+        this.openSet.clear();
+
+        a.g = 0;
+        a.h = this.heuristic(a, b);
+        a.f = a.g + a.h;
+
+        this.openSet.add(a);
+
+        let x1, x2, y1, y2, i, j, node, neighbor;
+        do {
+
+            if (!complete) {
+                this.timer += deltaTime;
+
+                if (this.timer < 1)
+                    return null;    
+                else 
+                    this.timer = 0;
             }
 
-            const neighbors = this.getNeighbors(currentNode);
+            node = this.openSet.poll();
+      
+            if (node === b) { // check target       
+                return this.backTrace(a, b);
+            }
+      
+            // Neighbor position ranges
+            x1 = Math.max(0, node.x - 1);
+            x2 = Math.min(node.x + 2, this.grid.getCols());
+      
+            y1 = Math.max(0, node.y - 1);
+            y2 = Math.min(node.y + 2, this.grid.getRows());
 
-            for (const neighbor of neighbors) {
+            // Iterate neighbors
+            for (i = x1; i < x2; ++i) {
+                for (j = y1; j < y2; ++j) {
 
-                const tentativeG = currentNode.g + 1;
-          
-                if (!this.openList.contains(neighbor) || tentativeG < neighbor.g) {
-                    neighbor.g = tentativeG;
-                    neighbor.h = this.heuristic(neighbor, this.end);
-                    neighbor.f = neighbor.g + neighbor.h;
-                    neighbor.parent = currentNode;
-            
-                    if (!this.openList.contains(neighbor)) {
-                        this.openList.enqueue(neighbor, neighbor.f);
+                    if (i !== node.x || j !== node.y) { // if not the same
+
+                        neighbor = this.grid.getNode(i, j);
+        
+                        if (!neighbor.isObstacle() && !this.closedSet[neighbor.id] && !this.grid.getNode(node.x, j).isObstacle() 
+                                                && !this.grid.getNode(i, node.y).isObstacle()) { // check if node it is visitable
+                            
+                                const weight = node.x === i || node.y === j ? LATERAL_WEIGHT : DIAGONAL_WEIGHT;
+                                const g = node.g + weight;                     // Actual cost up to node n.
+                                const h = this.heuristic(neighbor, b); // Estimated cost to goal.
+                                const f = g + h;                               // Estimated cost of the solution through n.
+                
+                                if (neighbor.f > f) { // Update neighbor
+                                    neighbor.g = g;
+                                    neighbor.h = h;
+                                    neighbor.f = f;
+                                    neighbor.parent = node;  
+                                    this.openSet.remove(neighbor); 
+                                    this.openSet.add(neighbor);
+                                } else if (!this.openSet.contains(neighbor)) { // Add neighbor
+                                    neighbor.g = g;
+                                    neighbor.h = h;
+                                    neighbor.f = f;
+                                    neighbor.parent = node;            
+                                    this.openSet.add(neighbor);
+                                }
+                            }
+                    
                     }
+                
                 }
             }
 
-        }
+            this.closedSet[node.id] = node; // Add node to closedSet
+
+          } while (this.openSet.size() > 0);
+      
+          return null;
 
     }
 
-    createMap() {
-
-        for (let c = 0; c < this.cols; c++) {
-            this.map[c] = [];
-            for (let r = 0; r < this.rows; r++) {
-                // 25% de posibilidad de ser obstaculo
-                this.map[c][r] = Math.random() < 0.25;
-            }
-        }
-
-    }
 
     render() {
 
+        // Dibuja el fondo
         let color = `rgb(${185}, ${185}, ${185})`;
 
+        ASContext.fillStyle = color;
+        ASContext.fillRect(0, 0, ASCanvas.width, ASCanvas.height);
+
         // Dibuja el mapa
-        for (let i = 0; i < this.cols; i++) {
-            for (let j = 0; j < this.rows; j++) {
+        for (let i = 0; i < this.grid.getCols(); i++) {
+            for (let j = 0; j < this.grid.getRows(); j++) {
 
                 color = `rgb(${185}, ${185}, ${185})`;
 
-                if (this.map[i][j])
+                if (this.grid.getNode(i, j).obstacle) {
                     color = `rgb(${74}, ${74}, ${74})`;
+                }
 
                 ASContext.fillStyle = color;
-                ASContext.fillRect(this.colWidth * i, this.rowHeight * j, this.colWidth, this.rowHeight);
+                ASContext.fillRect(this.grid.colWidth * i, this.grid.rowHeight * j, this.grid.colWidth, this.grid.rowHeight);
 
             }
         }
 
-        // this.renderOpenList();
-        // this.renderClosedList();
-        this.renderSolution();
-
-    }
-
-    renderOpenList() {
-
-        const list = [];
-  
-        while (!this.openList.isEmpty()) {
-            const node = this.openList.dequeue();
-            list.push(node);
-        }
-
-        // Restaurar la cola de prioridad
-        for (const node of list) {
-            this.openList.enqueue(node, node.f);
-        }
+        const oS = this.openSet.get();
 
         // Dibuja la lista abierta
-        for (const node of list) {
+        for (let i = 0; i < this.openSet.size(); i++) {
+
+            let node = oS[i];
+
             ASContext.fillStyle = `rgb(${0}, ${0}, ${255})`;
-            ASContext.fillRect(this.colWidth * node.x, this.rowHeight * node.y, this.colWidth, this.rowHeight);
+            ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
+
         }
-    }
-
-    renderClosedList() {
-
-        const list = this.closedList.values();
 
         // Dibuja la lista cerrada
-        for (const l of list) {
+        for (node of this.closedSet) {
+
             ASContext.fillStyle = `rgb(${255}, ${0}, ${0})`;
-            ASContext.fillRect(this.colWidth * l.x, this.rowHeight * l.y, this.colWidth, this.rowHeight);
+            ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
+
         }
 
-    }
-
-    renderSolution() {
         // Dibuja la solucion
-        for (let i = 0; i < this.solution.length; i++) {
+        if(this.solution) {
 
-            let node = this.solution[i];
+            for(let i = 0; i < this.solution.length; ++i) {
+                let node = this.solution[i];
 
-            ASContext.fillStyle = `rgb(${0}, ${255}, ${0})`;
-            ASContext.fillRect(this.colWidth * node.x, this.rowHeight * node.y, this.colWidth, this.rowHeight);
+                ASContext.fillStyle = `rgb(${0}, ${255}, ${0})`;
+                ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
+
+            }
+
         }
+
+        // Dibuja celda inicial y final
+        ASContext.fillStyle = `rgb(${255}, ${255}, ${0})`;
+        ASContext.fillRect(this.grid.colWidth * this.start.x, this.grid.rowHeight * this.start.y, this.grid.colWidth, this.grid.rowHeight);
+        ASContext.fillStyle = `rgb(${0}, ${255}, ${255})`;
+        ASContext.fillRect(this.grid.colWidth * this.end.x, this.grid.rowHeight * this.end.y, this.grid.colWidth, this.grid.rowHeight);
+
     }
 
     update(deltaTime) {
 
-        this.rowHeight = ASCanvas.height / this.rows;
-        this.colWidth = ASCanvas.width / this.cols;
+        this.grid.rowHeight = ASCanvas.height / this.grid.rows;
+        this.grid.columnWidth = ASCanvas.width / this.grid.columns;
 
-    }
-
-    getNeighbors(node) {
-
-        const neighbors = [];
-        const { x, y } = node;
-        const moves = [{ x: -1, y: 0 }, { x: 1, y: 0 }, { x: 0, y: -1 }, { x: 0, y: 1 }];
-        
-        for (const move of moves) {
-
-            const newX = x + move.x;
-            const newY = y + move.y;
-            if (newX >= 0 && newX < this.cols && newY >= 0 && newY < this.rows && !this.map[newX][newY]) {
-                neighbors.push(new Node(newX, newY));
-            }
-        }
-
-        return neighbors;
+        if (this.solution == null)
+            this.solution = this.route(this.start, this.end, false, deltaTime);
 
     }
 
@@ -208,5 +286,20 @@ class AStar {
     heuristic(node, end) {
         return Math.abs(node.x - end.x) + Math.abs(node.y - end.y);
     }
-      
+
+    backTrace(a, b) {
+ 
+        let route = [];
+        let lastNode; 
+    
+        while (b != a) {
+            lastNode = b; // lastNode
+            b = b.parent; // currentNode
+            route.push(lastNode);
+        }
+
+        route.push(a);
+        return route;
+    }
+
 }
