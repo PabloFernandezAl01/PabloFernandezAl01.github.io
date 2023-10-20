@@ -41,17 +41,15 @@ function drawAStar() {
  */
 function draw() {
 
-    let time = Date.now();
-
     animations.forEach(function (value) {
         value.update(this.deltaTime * 0.001)
         value.render();
     })
 
-    this.deltaTime = time - this.lastFrame;
-
-    this.lastFrame = time;
-
     window.requestAnimationFrame(draw);
+
+    let time = Date.now();
+    this.deltaTime = time - this.lastFrame;
+    this.lastFrame = time;
 
 }

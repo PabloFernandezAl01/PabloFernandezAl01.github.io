@@ -46,7 +46,7 @@ class Node {
 class Grid {
     
     constructor() {
-        this.cols = 200;
+        this.cols = 150;
         this.rows = Math.round(this.cols / (ASCanvas.width / ASCanvas.height));
 
         this.rowHeight = ASCanvas.height / this.rows;
@@ -119,115 +119,122 @@ class AStar {
             this.start = this.grid.getNode(x1, y1);
             this.end = this.grid.getNode(x2, y2);
 
+            // Los nodos elegidos son validos
             if (!this.start || !this.end) continue;
+
+            // Los nodos elegidos guardan una distancia considerable para que la simulacion dure lo suficiente
+            if (this.heuristic(this.start, this.end) < this.grid.cols * 0.5) continue;
 
             this.start.obstacle = false;
             this.end.obstacle = false;
 
-            this.solution = this.route(this.start, this.end, true, 0);
+            this.prepareRoute(this.start, this.end);
+            this.solution = this.routeA(this.start, this.end, this.x1, this.x2, this.y1, 
+                                    this.y2, this.i, this.j, this.node, this.neighbor);
+
         }
         while (this.solution == null);
 
-        this.solution = null;
-        this.openSet.clear();
-        this.openSet.add(this.start)
-        this.closedSet = []
-        this.closedList = []
+        this.prepareRoute(this.start, this.end);
 
     }
 
-    route(a, b, complete, deltaTime) {
+    prepareRoute(a, b) {
+        this.solution = null;
+        this.closedSet = [];
+        this.closedList = [];
+        this.openSet.clear();
 
-        if (complete) {
-            this.closedSet = [];
-            this.openSet.clear();
+        a.g = 0;
+        a.h = this.heuristic(a, b);
+        a.f = a.g + a.h;
 
-            a.g = 0;
-            a.h = this.heuristic(a, b);
-            a.f = a.g + a.h;
+        this.openSet.add(a);
 
-            this.openSet.add(a);
+        this.x1 = 0; this.x2 = 0; 
+        this.y1 = 0; this.y2 = 0; 
+        this.i = 0; this.j = 0; 
+        this.neighbor = null;
+        this.node = null; 
+    }
 
-            this.x1 = 0; this.x2 = 0;
-            this.y1 = 0; this.y2 = 0;
-            this.i = 0; this.j = 0;
-            this.node = null;
-            this.neighbor = null;
+    algorithm(a, b, x1, x2, y1, y2, i, j, node, neighbor) {
+
+        node = this.openSet.poll();
+
+        if (node === b) {      
+            return this.backTrace(a, b);
         }
+    
+        // Neighbor position ranges
+        x1 = Math.max(0, node.x - 1);
+        x2 = Math.min(node.x + 2, this.grid.getCols());
+    
+        y1 = Math.max(0, node.y - 1);
+        y2 = Math.min(node.y + 2, this.grid.getRows());
 
-        do {
+        // Iterate neighbors
+        for (i = x1; i < x2; ++i) {
+            for (j = y1; j < y2; ++j) {
 
-            if (!complete) {
-                this.timer += deltaTime;
+                if (i !== node.x || j !== node.y) {
 
-                if (this.timer < 0.025)
-                    break;    
-                else 
-                    this.timer = 0;
-            }
-
-            this.node = this.openSet.poll();
-
-            if (!this.node) {
-                this.chooseRandomPoints()
-                break;
-            }
-
-            if (this.node === b) { // check target       
-                return this.backTrace(a, b);
-            }
-      
-            // Neighbor position ranges
-            this.x1 = Math.max(0, this.node.x - 1);
-            this.x2 = Math.min(this.node.x + 2, this.grid.getCols());
-      
-            this.y1 = Math.max(0, this.node.y - 1);
-            this.y2 = Math.min(this.node.y + 2, this.grid.getRows());
-
-            // Iterate neighbors
-            for (this.i = this.x1; this.i < this.x2; ++this.i) {
-                for (this.j = this.y1; this.j < this.y2; ++this.j) {
-
-                    if (this.i !== this.node.x || this.j !== this.node.y) { // if not the same
-
-                        this.neighbor = this.grid.getNode(this.i, this.j);
+                    neighbor = this.grid.getNode(i, j);
+    
+                    if (!neighbor.isObstacle() && !this.closedSet[neighbor.id] && !this.grid.getNode(node.x, j).isObstacle() 
+                                            && !this.grid.getNode(i, node.y).isObstacle()) {
+                        
+                        const weight = node.x === i || node.y === j ? LATERAL_WEIGHT : DIAGONAL_WEIGHT;
+                        const g = node.g + weight;                     // Actual cost up to node n.
+                        const h = this.heuristic(neighbor, b); // Estimated cost to goal.
+                        const f = g + h;                               // Estimated cost of the solution through n.
         
-                        if (!this.neighbor.isObstacle() && !this.closedSet[this.neighbor.id] && !this.grid.getNode(this.node.x, this.j).isObstacle() 
-                                                && !this.grid.getNode(this.i, this.node.y).isObstacle()) { // check if node it is visitable
-                            
-                                const weight = this.node.x === this.i || this.node.y === this.j ? LATERAL_WEIGHT : DIAGONAL_WEIGHT;
-                                const g = this.node.g + weight;                     // Actual cost up to node n.
-                                const h = this.heuristic(this.neighbor, b); // Estimated cost to goal.
-                                const f = g + h;                               // Estimated cost of the solution through n.
-                
-                                if (this.neighbor.f > f) { // Update neighbor
-                                    this.neighbor.g = g;
-                                    this.neighbor.h = h;
-                                    this.neighbor.f = f;
-                                    this.neighbor.parent = this.node;  
-                                    this.openSet.remove(this.neighbor); 
-                                    this.openSet.add(this.neighbor);
-                                } 
-                                else if (!this.openSet.contains(this.neighbor)) { // Add neighbor
-                                    this.neighbor.g = g;
-                                    this.neighbor.h = h;
-                                    this.neighbor.f = f;
-                                    this.neighbor.parent = this.node;            
-                                    this.openSet.add(this.neighbor);
-                                }
-                            }
-                    
+                        if (neighbor.f > f) { // Update neighbor
+                            neighbor.g = g;
+                            neighbor.h = h;
+                            neighbor.f = f;
+                            neighbor.parent = node;  
+                            this.openSet.remove(neighbor); 
+                            this.openSet.add(neighbor);
+                        } 
+                        else if (!this.openSet.contains(neighbor)) { // Add neighbor
+                            neighbor.g = g;
+                            neighbor.h = h;
+                            neighbor.f = f;
+                            neighbor.parent = node;            
+                            this.openSet.add(neighbor);
+                        }
                     }
-                
                 }
             }
+        }
 
-            this.closedSet[this.node.id] = this.node; // Add node to closedSet
-            this.closedList.push(this.node)
+        this.closedSet[node.id] = node; // Add node to closedSet
+        this.closedList.push(node)
 
-          } while (this.openSet.size() > 0);
-      
-          return null;
+    }
+
+    routeA(a, b, x1, x2, y1, y2, i, j, node, neighbor) {
+
+        let sol = null;
+
+        while(this.openSet.size() > 0 && sol == null) {
+            sol = this.algorithm(a, b, x1, x2, y1, y2, i, j, node, neighbor)
+        }
+
+        return sol;
+
+    }
+
+    routeB(a, b, x1, x2, y1, y2, i, j, node, neighbor) {
+
+        let sol = null;
+
+        if (this.openSet.size() > 0 && sol == null) {
+            sol = this.algorithm(a, b, x1, x2, y1, y2, i, j, node, neighbor)
+        }
+
+        return sol;
 
     }
 
@@ -236,16 +243,18 @@ class AStar {
         this.grid.rowHeight = ASCanvas.height / this.grid.rows;
         this.grid.columnWidth = ASCanvas.width / this.grid.columns;
 
-        if (this.solution == null)
-            this.solution = this.route(this.start, this.end, false, deltaTime);
-        else {
+        if (this.solution == null) {
 
+            this.solution = this.routeB(this.start, this.end, this.x1, this.x2, this.y1, 
+                                    this.y2, this.i, this.j, this.node, this.neighbor);
+
+        }
+        else {
             this.timer += deltaTime;
             if (this.timer > 2) {
                 this.chooseRandomPoints();
                 this.timer = 0;
             }
-
         }
 
     }
@@ -272,9 +281,8 @@ class AStar {
 
                 color = BACKGROUND_COLOR;
 
-                if (this.grid.getNode(i, j).obstacle) {
+                if (this.grid.getNode(i, j).obstacle)
                     color = OBSTACLE_COLOR;
-                }
 
                 ASContext.fillStyle = color;
                 ASContext.fillRect(this.grid.colWidth * i, this.grid.rowHeight * j, this.grid.colWidth, this.grid.rowHeight);
@@ -284,6 +292,9 @@ class AStar {
     }
 
     renderOpenList() {
+
+        if (!this.openSet) return;
+
         const oS = this.openSet.get();
 
         // Dibuja la lista abierta
@@ -298,7 +309,10 @@ class AStar {
     }
 
     renderClosedList() {
+
         // Dibuja la lista cerrada
+        if (!this.closedList) return;
+
         for (const node of this.closedList) {
 
             ASContext.fillStyle = CLOSEDLIST_COLOR;
@@ -308,18 +322,18 @@ class AStar {
     }
 
     renderSolution() {
+
         // Dibuja la solucion
-        if(this.solution) {
+        if (!this.solution) return;
 
-            for(let i = 0; i < this.solution.length; ++i) {
-                let node = this.solution[i];
+        for(let i = 0; i < this.solution.length; ++i) {
+            let node = this.solution[i];
 
-                ASContext.fillStyle = SOLUTION_COLOR;
-                ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
-
-            }
+            ASContext.fillStyle = SOLUTION_COLOR;
+            ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
 
         }
+
     }
 
     renderStartAndEnd() {
