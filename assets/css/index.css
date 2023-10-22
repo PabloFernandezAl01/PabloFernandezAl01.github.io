@@ -11,10 +11,69 @@
     src: url('../fonts/NixieOne.ttf') format('truetype');
 }
 
+
+/* Configuracion general */
+:root{
+
+    /* Paleta */
+    /*      HEX                         RGB       */
+    --color-A: #470d3b;      /* rgb(71, 13, 59) */
+    --color-B: #7e2f56;     /* rgb(126, 47, 86) */
+    --color-C: #c0576f;    /* rgb(192, 87, 111) */
+    --color-D: #e48679;   /* rgb(228, 134, 121) */
+    --color-E: #febd84;   /* rgb(254, 189, 132) */
+
+}
+
 body {
     margin: 0;
     padding: 0;
+    background-color: var(--color-E);
+
+    /* background-image: url('../img/landscape.jpg');
+    background-attachment: fixed;
+    background-size: cover; */
+
 }
+
+
+/* --------------------- BARRA DE NAVEGACION -------------------- */
+
+.navbar {
+    background-color: var(--color-E);
+    width: 100vw;
+    text-align: center;
+    height: 7vh; /* Ajusta la altura según tus necesidades */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar a {
+    height: 100%; /* Asegura que la altura sea igual a la del div.header */
+    padding-left: 50px;
+    padding-right: 50px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 3em;
+    font-family: 'Portfolio-Font', sans-serif;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar a:hover {
+    background-color: var(--color-A);
+    color: white;
+    text-decoration: none;
+    padding-left: 3vw;
+    padding-right: 3vw;
+}
+
+
+/* --------------------- PORTFOLIO (Cabecera) --------------------*/
 
 .portfolio-container {
     width: 100%;
@@ -25,15 +84,143 @@ body {
     align-items: center;
 }
 
-.portfolio-container canvas {
-    background-color: rgb(153, 172, 172);
-}
-
 .portfolio-container h1 {   
-    font-size: 200px;
+    font-size: 20vh;
     text-shadow: 4px 4px rgb(86, 86, 86);
     text-align: center;
     position: absolute;
     color: white;
     font-family: 'Portfolio-Font', sans-serif;
 }
+
+.portfolio-container img  {
+    position: absolute;
+    top: 10vh; /* Ajusta la distancia desde la parte superior */
+    right: 20px; /* Ajusta la distancia desde la derecha */
+    width: 100px; /* Ajusta el ancho de la imagen */
+    height: auto; /* Esto mantiene la relación de aspecto */
+    z-index: 2; /* Ajusta el valor de z-index según sea necesario para que esté encima del canvas */
+}
+
+
+
+
+/* ------------------------ SOBRE MI -------------------------*/
+
+.aboutme {
+    font-family: 'Portfolio-Font', sans-serif;
+    background-color: var(--color-C);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.container {
+    max-width: 60%; /* Establecer el ancho máximo al 60% de la ventana */
+    color: #fff;
+}
+
+.aboutme h1 {
+    font-size: 100px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+  
+.aboutme h2 {
+    font-size: 48px;
+    margin-top: 20px;
+}
+
+.aboutme p {
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: bold;
+    word-spacing: 5px;
+}
+
+.aboutme strong {
+    font-weight: bold;
+    color: #470d3b; /* Color de resaltado personalizado */
+}
+
+.aboutme ul {
+    list-style: none;
+    padding: 0;
+}
+
+.aboutme li {
+    margin: 5px 0;
+}
+
+.aboutme a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #470d3b; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border-radius: 10px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.aboutme a:hover {
+    background-color: var(--color-D);
+}
+
+
+
+.skills {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .skills h1 {
+    color: #333;
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .skills > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0; /* Margen superior e inferior cero para los divs padres */
+  }
+  
+  .skills > div + div {
+    margin-top: 30px; /* Agrega espacio entre cada bloque "icono-texto" */
+  }
+  
+  .skills img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-bottom: 10px; /* Agrega espacio entre el icono y el texto */
+  }
+  
+  .skills h4 {
+    color: #666;
+    font-size: 24px;
+    margin: 10px 0;
+  }
+  
+  .skills p {
+    color: #444;
+    line-height: 1.5;
+    text-align: center;
+  }
+  
+  .skills strong {
+    font-weight: bold;
+    color: #0077b6; /* Color de resaltado personalizado */
+  }
+  
+  
+
+

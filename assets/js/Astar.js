@@ -5,7 +5,7 @@ const ASContext = ASCanvas.getContext("2d");
 const ASContainer = document.getElementById("astar-container");
 
 function resizeCanvas() {
-    ASCanvas.width = document.body.scrollWidth;
+    ASCanvas.width = ASContainer.clientWidth;
     ASCanvas.height = ASContainer.clientHeight;
 }
 
@@ -83,11 +83,11 @@ class Grid {
 const LATERAL_WEIGHT = 1;
 const DIAGONAL_WEIGHT = Math.sqrt(2) * LATERAL_WEIGHT;
 
-const BACKGROUND_COLOR = `rgb(${18}, ${5}, ${12})`;
-const OBSTACLE_COLOR = `rgb(${61}, ${21}, ${12})`;
-const OPENLIST_COLOR = `rgb(${255}, ${234}, ${31})`;
-const CLOSEDLIST_COLOR = `rgb(${125}, ${61}, ${19})`;
-const SOLUTION_COLOR = `rgb(${255}, ${255}, ${255})`;
+const BACKGROUND_COLOR = `rgb(${71}, ${13}, ${59})`;
+const OBSTACLE_COLOR = `rgb(${126}, ${47}, ${86})`;
+const OPENLIST_COLOR = `rgb(${228}, ${134}, ${121})`;
+const CLOSEDLIST_COLOR = `rgb(${192}, ${87}, ${111})`;
+const SOLUTION_COLOR = `rgb(${254}, ${189}, ${132})`;
 const STARTCELL_COLOR = `rgb(${228}, ${219}, ${219})`;
 const ENDCELL_COLOR = `rgb(${228}, ${219}, ${219})`;
 
@@ -110,20 +110,17 @@ class AStar {
 
     chooseRandomPoints() {
         do {
-            let x1 = Math.round(Math.random() * this.grid.getCols());
-            let y1 = Math.round(Math.random() * this.grid.getRows());
+            let x1 = Math.floor(Math.random() * this.grid.getCols());
+            let y1 = Math.floor(Math.random() * this.grid.getRows());
 
-            let x2 = Math.round(Math.random() * this.grid.getCols());
-            let y2 = Math.round(Math.random() * this.grid.getRows());
+            let x2 = Math.floor(Math.random() * this.grid.getCols());
+            let y2 = Math.floor(Math.random() * this.grid.getRows());
 
             this.start = this.grid.getNode(x1, y1);
             this.end = this.grid.getNode(x2, y2);
 
             // Los nodos elegidos son validos
             if (!this.start || !this.end) continue;
-
-            // Los nodos elegidos guardan una distancia considerable para que la simulacion dure lo suficiente
-            if (this.heuristic(this.start, this.end) < this.grid.cols * 0.5) continue;
 
             this.start.obstacle = false;
             this.end.obstacle = false;
@@ -185,11 +182,11 @@ class AStar {
                                             && !this.grid.getNode(i, node.y).isObstacle()) {
                         
                         const weight = node.x === i || node.y === j ? LATERAL_WEIGHT : DIAGONAL_WEIGHT;
-                        const g = node.g + weight;                     // Actual cost up to node n.
-                        const h = this.heuristic(neighbor, b); // Estimated cost to goal.
-                        const f = g + h;                               // Estimated cost of the solution through n.
+                        const g = node.g + weight;                     
+                        const h = this.heuristic(neighbor, b); 
+                        const f = g + h;                               
         
-                        if (neighbor.f > f) { // Update neighbor
+                        if (neighbor.f > f) { 
                             neighbor.g = g;
                             neighbor.h = h;
                             neighbor.f = f;
@@ -197,7 +194,7 @@ class AStar {
                             this.openSet.remove(neighbor); 
                             this.openSet.add(neighbor);
                         } 
-                        else if (!this.openSet.contains(neighbor)) { // Add neighbor
+                        else if (!this.openSet.contains(neighbor)) { 
                             neighbor.g = g;
                             neighbor.h = h;
                             neighbor.f = f;
@@ -209,7 +206,7 @@ class AStar {
             }
         }
 
-        this.closedSet[node.id] = node; // Add node to closedSet
+        this.closedSet[node.id] = node; 
         this.closedList.push(node)
 
     }
@@ -240,8 +237,8 @@ class AStar {
 
     update(deltaTime) {
 
-        this.grid.rowHeight = ASCanvas.height / this.grid.rows;
-        this.grid.columnWidth = ASCanvas.width / this.grid.columns;
+        // this.grid.rowHeight = ASCanvas.height / this.grid.rows;
+        // this.grid.columnWidth = ASCanvas.width / this.grid.columns;
 
         if (this.solution == null) {
 
@@ -251,7 +248,7 @@ class AStar {
         }
         else {
             this.timer += deltaTime;
-            if (this.timer > 2) {
+            if (this.timer > 1) {
                 this.chooseRandomPoints();
                 this.timer = 0;
             }
@@ -272,9 +269,6 @@ class AStar {
         // Dibuja el fondo
         let color = BACKGROUND_COLOR;
 
-        ASContext.fillStyle = color;
-        ASContext.fillRect(0, 0, ASCanvas.width, ASCanvas.height);
-
         // Dibuja el mapa
         for (let i = 0; i < this.grid.getCols(); i++) {
             for (let j = 0; j < this.grid.getRows(); j++) {
@@ -283,6 +277,8 @@ class AStar {
 
                 if (this.grid.getNode(i, j).obstacle)
                     color = OBSTACLE_COLOR;
+                else 
+                    color = BACKGROUND_COLOR;
 
                 ASContext.fillStyle = color;
                 ASContext.fillRect(this.grid.colWidth * i, this.grid.rowHeight * j, this.grid.colWidth, this.grid.rowHeight);
