@@ -5,7 +5,7 @@ const ASContext = ASCanvas.getContext("2d");
 const ASContainer = document.getElementById("astar-container");
 
 function resizeCanvas() {
-    ASCanvas.width = ASContainer.clientWidth;
+    ASCanvas.width = document.body.scrollWidth;
     ASCanvas.height = ASContainer.clientHeight;
 }
 
@@ -83,11 +83,12 @@ class Grid {
 const LATERAL_WEIGHT = 1;
 const DIAGONAL_WEIGHT = Math.sqrt(2) * LATERAL_WEIGHT;
 
-const BACKGROUND_COLOR = `rgb(${71}, ${13}, ${59})`;
-const OBSTACLE_COLOR = `rgb(${126}, ${47}, ${86})`;
-const OPENLIST_COLOR = `rgb(${228}, ${134}, ${121})`;
-const CLOSEDLIST_COLOR = `rgb(${192}, ${87}, ${111})`;
-const SOLUTION_COLOR = `rgb(${254}, ${189}, ${132})`;
+const BACKGROUND_COLOR = `#4b1139`;
+const OBSTACLE_COLOR = `#3b4058`;
+const OPENLIST_COLOR = `#2a6e78`;
+const CLOSEDLIST_COLOR = `#7a907c`;
+
+const SOLUTION_COLOR = `rgb(${255}, ${255}, ${255})`;
 const STARTCELL_COLOR = `rgb(${228}, ${219}, ${219})`;
 const ENDCELL_COLOR = `rgb(${228}, ${219}, ${219})`;
 
@@ -269,6 +270,9 @@ class AStar {
         // Dibuja el fondo
         let color = BACKGROUND_COLOR;
 
+        ASContext.fillStyle = color;
+        ASContext.fillRect(0, 0, ASCanvas.width, ASCanvas.height);
+
         // Dibuja el mapa
         for (let i = 0; i < this.grid.getCols(); i++) {
             for (let j = 0; j < this.grid.getRows(); j++) {
@@ -277,8 +281,6 @@ class AStar {
 
                 if (this.grid.getNode(i, j).obstacle)
                     color = OBSTACLE_COLOR;
-                else 
-                    color = BACKGROUND_COLOR;
 
                 ASContext.fillStyle = color;
                 ASContext.fillRect(this.grid.colWidth * i, this.grid.rowHeight * j, this.grid.colWidth, this.grid.rowHeight);

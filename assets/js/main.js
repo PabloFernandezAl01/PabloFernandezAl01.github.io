@@ -53,3 +53,18 @@ function draw() {
     this.lastFrame = time;
 
 }
+
+
+
+const navLinks = document.querySelectorAll('.nav-link');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        // Elimina la clase activa de todos los enlaces
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+        // Agrega la clase activa al enlace actual
+        link.classList.add('active');
+    });
+});
