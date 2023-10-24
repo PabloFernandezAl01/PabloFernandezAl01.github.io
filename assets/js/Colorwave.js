@@ -40,14 +40,13 @@ class ColorWave {
         for (let color of COLORS)
             this.sourceColors.push(hexToHSV(color));
 
+        let steps = Math.ceil((this.rows / (COLORS.length - 1)) / 2)
+
         for (let i = 0; i < COLORS.length - 1; i++)
-            this.destinationColors = this.destinationColors.concat(interpolateHSV(this.sourceColors[i], this.sourceColors[i + 1], this.rows / (COLORS.length - 1)))
+            this.destinationColors = this.destinationColors.concat(interpolateHSV(this.sourceColors[i], this.sourceColors[i + 1], steps))
 
-        // for (let i = 0; i < COLORS.length - 1; i++)
-        // this.destinationColors = this.destinationColors.concat(interpolateHSV(this.sourceColors[i], this.sourceColors[i + 1], this.rows / COLORS.length))
-
-        // this.destinationColors = this.destinationColors.concat(interpolateHSV(this.sourceColors[COLORS.length - 1], this.sourceColors[0], this.rows / COLORS.length))
-
+        this.destinationColors = this.destinationColors.concat(this.destinationColors.slice().reverse())
+        
     }
 
     render () {
