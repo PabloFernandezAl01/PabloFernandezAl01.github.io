@@ -238,9 +238,6 @@ class AStar {
 
     update(deltaTime) {
 
-        // this.grid.rowHeight = ASCanvas.height / this.grid.rows;
-        // this.grid.columnWidth = ASCanvas.width / this.grid.columns;
-
         if (this.solution == null) {
 
             this.solution = this.routeB(this.start, this.end, this.x1, this.x2, this.y1, 
@@ -249,7 +246,7 @@ class AStar {
         }
         else {
             this.timer += deltaTime;
-            if (this.timer > 1) {
+            if (this.timer > 2) {
                 this.chooseRandomPoints();
                 this.timer = 0;
             }

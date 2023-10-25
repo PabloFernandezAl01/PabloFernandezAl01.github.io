@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Pablo Fernández Álvarez</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/projects.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/contact.css">
+
+</head>
+
+<body>
+
+
+    <!---------------------- Barra de navegación --------------------->
+    
+    <div class="navbar">
+        <a href="#aboutme" target="_self" class="nav-link active">Sobre mí</a>
+        <a href="#projects" target="_self" class="nav-link">Proyectos</a>
+        <a href="#" target="_self" class="nav-link">Contacto</a>
+        <a href="assets/cv/CV-ES.pdf" target="_self" download="CV-ES.pdf" class="nav-link">CV</a>
+    </div>
+
+
+    <!-- Descripción -->
+
+    <div class="description">
+        <div class="container">
+            <h1>Shy</h1>
+
+            <h2>Descripción</h2>
+            <p>Shy es el nombre del proyecto que desarrollamos en un grupo de tres personas para el trabajo de fin de grado (TFG). Consiste en un motor y editor de videojuegos 2D para no programadores. El objetivo del mismo es proporcionar una herramienta con la que se puedan crear videojuegos sencillos en 2D con una curva de aprendizaje menor comparada con la que ofrecen los motores más utilizados hoy en día y centrada en aquellos perfiles con poca experiencia en programación o en desarrollo de videojuegos en general.</p>
+
+            <ul>El desarrollo del proyecto se dividió en tres partes: motor, editor y sistema de scripting:
+                <p>Antes de nada mencionar que Shy es un motor dirigido por datos lo que significa que toda la lógica y configuración de las escenas se genera y almacena en ficheros y el motor de ejecución los interpreta. Además, mencionar también que todo el proyecto fue desarrollado en C++ utilizando Visual Studio y una serie de librerías necesarias tanto para el motor como para el editor.</p>
+                <li>Motor
+                    <p>En cuanto al motor, esta dividido en una serie de módulos que contienen la tecnología necesaria para diferentes propósitos. Estas módulos son: manejador de recursos, audio, input, físicas, renderizado, arquitectura de gameplay (basada en entidades y componentes) y componentes nativos.</p>
+                    <p>Las librerías utilizadas por el motor son SDL para renderizado (imágenes, textos) e input y Box2D para las físicas.</p>
+                    <p>El motor cuenta con un sistema de reflexión para que el sistema de scripting del editor conozca su API y pueda llamar a los métodos de cada uno de sus módulos.</p>
+                </li>
+                <li>Editor
+                    <p>En cuanto al editor, utiliza la librería ImGUI de interfaz de usuario con la cuál implementamos un sistema de ventanas para dividir la funcionalidad del mismo. Esta dividio en tres vistas principales, gestor de proyectos, vista principal, y editor de scripts. La vista principal cuenta con ventanas para el viewport (la ventana de juego), la jerarquía de entidades de la escena, componentes de las entidades, explorador de archivos del proyecto, preferencias del proyecto, etc.</p>
+                    <p>El editor genera la información de escenas, prefabs, scripts, etc y el motor lo interpreta en ejecución para generar la lógica, entidades y demás.</p>
+                </li>
+                <li>Sistema de scripting
+                    <p>Este lenguaje se trata de un sistema basado en nodos pensando principalmente para ser usado de forma visual, inspirado en el sistema de Blueprints de Unreal Engine. La ejecución del lenguaje funciona siguiendo un flujo, es decir, poder establecer el orden en el que se ejecutan los nodos, garantizando que el script se comporte siempre de la misma forma.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="Contribution">
+        <div class="container">
+            <h2>Contribución</h2>
+
+            
+        </div>
+    </div>
+
+    
+    <!----------------- Contacto ------------------->
+
+    <div class="contacto" id="contacto">
+        <div class="container">
+            <h1>Contacto</h1>
+
+            <div class="info">
+                <div>
+                    <p>Donde encontrarme</p>
+                    <p>Las Rosas, 28017</p>
+                    <p>Madrid, España</p>
+                </div>
+              
+                <div>
+                    <p>Información de contacto</p>
+                    <p>pablofa01@gmail.com</p>
+                    <p>+34 675456362</p>
+                </div>
+        
+                <div>
+                    <p>Redes sociales</p>
+                    <p><a href="https://www.linkedin.com/in/pablo-fern%C3%A1ndez-%C3%A1lvarez-19b889246/">LinkedIn</a></p>
+                    <p><a href="https://github.com/PabloFernandezAl01">GitHub</a></p>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+    <!-- Javascript -->
+
+
+</body>
+
+</html>

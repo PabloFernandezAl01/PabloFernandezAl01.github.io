@@ -1,0 +1,95 @@
+/* CSS para la vista de proyectos */
+
+@font-face {
+    font-family: 'Portfolio-Font';
+    src: url('../fonts/NixieOne.ttf') format('truetype');
+}
+
+
+/* Configuracion general */
+:root{
+
+    /* Paleta */
+    /*      HEX                         RGB       */
+    --color-A: #4b1139;      /* rgb(71, 13, 59) */
+    --color-B: #3b4058;     /* rgb(126, 47, 86) */
+    --color-C: #2a6e78;    /* rgb(192, 87, 111) */
+    --color-D: #7a907c;   /* rgb(228, 134, 121) */
+    --color-E: #c9b180;   /* rgb(254, 189, 132) */
+
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-E);
+}
+
+.description {
+    font-family: 'Portfolio-Font', sans-serif;
+    background-color: var(--color-C);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+}
+
+.description .container {
+    max-width: 60vw; /* Establecer el ancho máximo al 60% de la ventana */
+    color: #fff;
+}
+
+.description h1 {
+    font-size: 100px;
+    margin-top: 2vh;
+    margin-bottom: 0vh;
+}
+  
+.description h2 {
+    font-size: 48px;
+    margin-top: 5vh;
+}
+
+.description p {
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: bold;
+    word-spacing: 5px;
+}
+
+.description strong {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-A); /* Color de resaltado personalizado */
+}
+
+.description ul {
+    list-style: none;
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: bold;
+    word-spacing: 5px;
+}
+
+.description li {
+    margin: 5px 0;
+    font-size: 40px;
+}
+
+.description a {
+    display: inline-block;
+    margin: 0.5vw;
+    padding: 20px 30px;
+    text-decoration: none;
+    background-color: var(--color-A); /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border-radius: 10px;
+    font-weight: bold;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+}
+
+.description a:hover {
+    background-color: var(--color-D);
+}
