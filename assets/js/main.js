@@ -55,7 +55,7 @@ function draw() {
 }
 
 
-
+// Mantener resaltado en el navbar el apartado actual
 const navLinks = document.querySelectorAll('.nav-link');
 
 navLinks.forEach(link => {
@@ -67,4 +67,21 @@ navLinks.forEach(link => {
         // Agrega la clase activa al enlace actual
         link.classList.add('active');
     });
+});
+
+
+// Boton de mostrar/ocultar las contribuciones
+const toggleButton = document.getElementById("toggleButton");
+const content = document.getElementById("content");
+
+toggleButton.addEventListener("click", function() {
+    if (content.classList.contains("hidden")) {
+        content.classList.remove("hidden");
+        content.classList.add("visible");
+        toggleButton.textContent = "-";
+    } else {
+        content.classList.remove("visible");
+        content.classList.add("hidden");
+        toggleButton.textContent = "+";
+    }
 });

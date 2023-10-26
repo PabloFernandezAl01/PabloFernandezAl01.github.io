@@ -30,9 +30,9 @@ class ColorWave {
 
         this.hue = 0;
         this.offset = 0;
-        this.direction = 1;
+        this.offsetRow = 0;
         this.timer = 0;
-        this.speed = 50;
+        this.speed = 80;
 
         this.sourceColors = [];
         this.destinationColors = [];
@@ -54,7 +54,7 @@ class ColorWave {
       // Vertical
       for (let i = 0; i < this.rows; i++) {
 
-          let paint = (i + this.offset) % this.rows;
+          let paint = (i + this.offsetRow) % this.rows;
 
           let hsvColor = this.destinationColors[paint];
 
@@ -66,6 +66,21 @@ class ColorWave {
       }
 
   }
+
+    update (deltaTime) {
+
+        this.rowHeight = CWCanvas.height / this.rows;
+        this.columnWidth = CWCanvas.width / this.columns;
+
+        this.offset += this.speed * deltaTime;
+        this.offsetRow = Math.round(this.offset)
+
+        if (this.offset >= this.rows) {
+            this.offset = 0;
+            this.offsetRow = 0;
+        }
+      
+    }
 
     renderRGBCicle() {
 
@@ -93,18 +108,6 @@ class ColorWave {
 
         // }
 
-    }
-
-    update (deltaTime) {
-
-        this.rowHeight = CWCanvas.height / this.rows;
-        this.columnWidth = CWCanvas.width / this.columns;
-
-        this.offset += Math.round(this.direction * this.speed * deltaTime);
-
-        if (this.offset >= this.rows)
-                this.offset = 0;
-        
     }
 
 }

@@ -19,11 +19,34 @@
 
 }
 
+.shy {
+    width: 100%;
+    height: 300px;
+
+    display: flex;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+    position: sticky;
+    margin-top: 5vh;
+}
+
+.shy h1 {   
+    font-size: 150px;
+    text-shadow: 4px 4px rgb(86, 86, 86);
+    text-align: center;
+    position: absolute;
+    color: white;
+    font-family: 'Portfolio-Font', sans-serif;
+}
+
 body {
     margin: 0;
     padding: 0;
     background-color: var(--color-E);
 }
+
+
+/* ----------------- Descripcion de Shy ------------------- */
 
 .description {
     font-family: 'Portfolio-Font', sans-serif;
@@ -32,7 +55,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5vh;
+    margin-top: 1em;
 }
 
 .description .container {
@@ -92,4 +115,84 @@ body {
 
 .description a:hover {
     background-color: var(--color-D);
+}
+
+.description .extra{
+    margin-bottom: 7vh;
+}
+
+.description .libraries{
+    margin-bottom: 5vh;
+}
+
+.description .libraries img{
+    max-width: 15vw;
+    margin-top: 2vh;
+}
+
+.description .libraries .sdl{
+    margin-right: 5vw;
+}
+
+.description .libraries .box2d{
+    margin-bottom: 5vh;
+}
+
+.description .libraries .scripting{
+    max-width: 25vw;
+    margin-top: 2vh;
+    border-radius: 8px;
+}
+
+
+/* ----------------- Mi contribución ------------------- */
+
+.contribution {
+    font-family: 'Portfolio-Font', sans-serif;
+    background-color: var(--color-B);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.contribution strong {
+    font-weight: bold;
+    color: var(--color-A); 
+}
+
+
+.contribution .container {
+    max-width: 80vw; /* Establecer el ancho máximo al 60% de la ventana */
+    color: #fff;
+    margin-top: 1em;
+}
+
+.contribution h2 {
+    font-size: 48px;
+    margin-top: 2vh;
+}
+
+.contribution p {
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: bold;
+    word-spacing: 5px;
+}
+
+.contribution .plus {
+    font-size: 30px;
+    width: 3vw;   
+    height: 2vw;   
+    color: var(--color-A);
+    margin-bottom: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
 }

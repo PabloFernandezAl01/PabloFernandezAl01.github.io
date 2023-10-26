@@ -209,6 +209,12 @@ body {
     margin-top: 1em;
 }
 
+.projects strong {
+    font-weight: bold;
+    color: var(--color-A); 
+}
+
+
 .projects .container {
     max-width: 80vw; /* Establecer el ancho máximo al 60% de la ventana */
     color: #fff;
