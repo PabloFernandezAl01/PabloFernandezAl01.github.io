@@ -12,7 +12,7 @@
 
 </head>
 
-<body onload="init(); drawColorWave(); drawAStar();">
+<body onload="init(); drawColorWave('colorwave', 'projects-container'); drawAStar('astar', 'astar-container', 150, 0.3);">
 
 
     <!---------------------- Barra de navegación --------------------->
@@ -30,9 +30,11 @@
     <main class="portfolio-container" id="astar-container">
         <canvas id="astar"></canvas>  
         <h1>PORTFOLIO</h1>
-        <a href="#">
+
+        <a href="portoflio.html">
             <img src="assets/img/questionmark.png" alt="Questionmark">  
         </a>
+        
     </main>
 
 
@@ -159,51 +161,51 @@
 
             <ul>
                 <li>
-                    <div>
+                    <a href="cth.html" target="_blank">
                         <h2>Crunch Through Hell</h2>
                         <p>Crunch Through Hell es un <strong>videojuego 3D de Acción/BossRush</strong> en el que controlas a un valiente enamorado. Para lograr su objetivo y ganarse la aprobación de su amada, deberá bajar al infierno y <strong>derrotar a un serie de jefes</strong> sedientos de sangre. Fue desarrollado por un grupo de nueve personas usando el motor Love.</p>
                         <img src="assets/img/cth.png" alt="CTHLogo">
-                    </div>
+                    </a>
                 </li>
             </ul>
 
             <ul>
                 <li>
-                    <div>
+                    <a href="blackjack.html" target="_blank">
+                        <h2>Blackjack</h2>
+                        <p>Este juego es una <strong>versión</strong> del tradicional juego de mesa <strong>"Blackjack"</strong> con baraja de cartas española. Es un juego <strong>online</strong> en el que los jugadores se unen a un tablero y se enfrentan al crupier. El objetivo es obtener un número lo más próximo a 21 pero sin pasarse sumando el valor de tus cartas. Fue desarrollado integramente por mí utilizando <strong>C, C++, SDL y Linux</strong>.</p>
+                        <img src="assets/img/blackjack.png" alt="BlackjackLogo">
+                    </a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="gungcho.html" target="_blank">
                         <h2>Gung Cho'</h2>
                         <p>Gung Cho' es un videojuego de <strong>plataformas 2D</strong> en el que Cho', el protagonista, deberá llegar hasta la <strong>cima de la montaña</strong> Xyaha para recuperar los cristales que guardan la cultura perdida de sus antepasados. Fue desarrollado en <strong>Unity</strong> por un grupo de seis personas.</p>
                         <img src="assets/img/gancho.jpg" alt="GungChoLogo">
-                    </div>
+                    </a>
                 </li>
             </ul>
 
             <ul>
                 <li>
-                    <div>
+                    <a href="kingrise.html" target="_blank">
                         <h2>King Rise</h2>
                         <p>King Rise es un videojuego de <strong>estrategia y gestión de recursos por turnos</strong> con vista isométrica que narra la historia de nuestro protagonista Paradox, que tras ser secuestrado por una tribu africana, se convierte en su rey. Es un videojuego web que fue desarrollado con la librería <strong>Phaser</strong> por un grupo de cuatro personas.</p>
                         <img src="assets/img/kingrise.png" alt="KingRiseLogo">
-                    </div>
+                    </a>
                 </li>
             </ul>
 
             <ul>
                 <li>
-                    <div>
-                        <h2>Blackjack</h2>
-                        <p>Este juego es una <strong>versión</strong> del tradicional juego de mesa <strong>"Blackjack"</strong> con baraja de cartas española. Es un juego <strong>online</strong> en el que los jugadores se unen a un tablero y se enfrentan al crupier. El objetivo es obtener un número lo más próximo a 21 pero sin pasarse sumando el valor de tus cartas. Fue desarrollado integramente por mí utilizando <strong>C++, SDL y Linux</strong>.</p>
-                        <img src="assets/img/blackjack.png" alt="BlackjackLogo">
-                    </div>
-                </li>
-            </ul>
-
-            <ul>
-                <li>
-                    <div>
+                    <a href="portoflio.html" target="_blank">
                         <h2>Mi Portfolio</h2>
                         <p>Añado mi portfolio como un proyecto más ya que he decidio implementar esta página web utilizando <strong>HTML, CSS y Javascript</strong> sin usar ninguna plantilla o librería como Thymeleaf o Bootstrap. Lo más destacable es el <strong>algoritmo de búsqueda de caminos A*</strong> que aparece en la portada de la web, la <strong>ola de colores</strong> que encabeza este apartado, la paleta de colores a elección del usuario, la batalla de misiles y el dibujado de circunferencias con el algoritmo del punto medio. Son retos de programación interesantes que dan vida a la web y mejoran su aspecto.</p>
                         <img src="assets/img/astar.png" alt="PortfolioLogo">
-                    </div>
+                    </a>
                 </li>
             </ul>
 
@@ -248,8 +250,8 @@
     <!-- Javascript -->
 
     <script src="assets/js/Vector2D.js"></script>
+    <script src="assets/js/CanvasWrapper.js"></script>
     <script src="assets/js/PriorityQueue.js"></script>
-    <!-- <script src="assets/js/Shotfight.js"></script> -->
     <script src="assets/js/Colorwave.js"></script>
     <script src="assets/js/Astar.js"></script>
     <script src="assets/js/main.js"></script>

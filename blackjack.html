@@ -24,10 +24,10 @@
         <a href="assets/cv/CV-ES.pdf" target="_self" download="CV-ES.pdf" class="nav-link">CV</a>
     </div>
 
-    <!------------------- Dome ------------------->
+    <!------------------- Blackjack ------------------->
 
     <main class="cover" id="projects-container">
-        <h1>Love Engine</h1>
+        <h1>Blackjack</h1>
         <canvas id="colorwave"></canvas>    
     </main>
 
@@ -37,7 +37,7 @@
     <div class="links">
         <div class="container">
             <h1>Links</h1>
-            <a href="https://github.com/Triturados/Motor" target="_blank">Repositorio</a>
+            <a href="https://github.com/PabloFernandezAl01/RVR-PabloFernandezAlvarez" target="_blank">Repositorio</a>
         </div>
     </div>
 
@@ -47,15 +47,11 @@
         <div class="container">
 
             <h2>Descripción</h2>
-            <p>Love es un <strong>motor de videojuegos 3D</strong> que utiliza <strong>OGRE</strong> como sistema de renderizado, <strong>BulletPhysics</strong> como librería de física y <strong>Lua</strong> como lenguaje de scripting. Fue desarrollado por un grupo de nueve personas y se usó para desarrollar el videojuego "Crunch Through Hell".</p>
+            <p>Este juego es una <strong>versión</strong> del tradicional juego de mesa <strong>"Blackjack"</strong> con baraja de cartas española. Es un juego <strong>online</strong> en el que los jugadores se unen a un tablero y se enfrentan al crupier. El objetivo es obtener un número lo más próximo a 21 pero sin pasarse sumando el valor de tus cartas. Fue desarrollado integramente por mí utilizando <strong>C, C++, SDL y Linux</strong>.</p>
 
-            <p>Love utiliza la librería de renderizado gráfico OGRE, la cuál proporciona además gestor de recursos y jerarquía de entidades. <strong>FMOD</strong> como librería de audio, <strong>SDL</strong> para manejo de input, BulletPhysics para físicas 3D y Lua como lenguaje de scripting.</p>
+            <p>El juego sigue el modelo <strong>cliente-servidor</strong> y el modelo de red es <strong>TCP</strong> ya que al tratarse de un juego de mesa es necesario que la información sea <strong>consistente</strong>. La información de cartas y el tablero se envía de forma <strong>serializada</strong> utilizando el API de <strong>Sockets</strong> de Linux.</p>
 
-            <p>En cuanto a arquitectura de gameplay Love implementa un <strong>sistema de entidades y componentes</strong> y la entidades que se van actualizar, renderizar, etc. son las que se encuentran en la escena actual del juego. Para ello, Love cuenta con un gestor de escenas para cambiar de escena cuando sea necesario.</p>
-
-            <p>Por último, Love cuenta con una serie de <strong>componentes nativos</strong> del motor como Transform, Camera, MeshContainer, Collider, Rigidbody, Sound, e Image.</p>
-
-            <p>En el <a href="https://github.com/Triturados/Motor" target="_blank">repositorio</a> se encuentra la arquitectura de gameplay, componentes e información más detallada del motor.</p>
+            <p>En el <a href="https://proyectos1-fdi-ucm.github.io/c1920-Grupo06/" target="_blank">repositorio</a> se encuentra todo el código fuente del juego. En realidad el repostorio fue usado tanto para las prácticas como para el proyecto final (Blackjack) de tal forma que lo que importa aquí es el directorio "ProyectoFinal".</p>
 
         </div>
     </div>
@@ -67,7 +63,33 @@
         <div class="container">
             <h2>Contribución</h2>
 
-            <p>En cuanto a mis contribuciones en el desarrollo de LoveEngine, me encargué de: investigar BulletPhysics y crear una capa alrededor de la librería para comunicarla con el motor, scripts de automatización para compilar las librerías y compilar la solución del motor (lo que me tomó gran parte del desarrollo ya que no tenía experiencia con scripts de automatización en Windows), control de errores en todos los módulos del motor e implementación de Overlays con OGRE para la interfaz de usuario.</p>
+            <p>Todo el proyecto ha sido desarrollado por mí.</p>
+
+        </div>
+    </div>
+
+
+    <!------------------ Galería ------------------>
+
+    <div class="galery">
+        <div class="container">
+
+            <h2>Galería</h2>
+
+            <div class="item">
+                <h3>Menú del Blackjack</h3>
+                <img src="assets/img/blackjackmenu.png">
+            </div>
+
+            <div class="item">
+                <h3>Partida de Blackjack</h3>
+                <img src="assets/img/blackjackgame.png">
+            </div>
+
+            <div class="item">
+                <h3>Victoria en Blackjack</h3>
+                <img src="assets/img/blackjackwin.png">
+            </div>
 
         </div>
     </div>

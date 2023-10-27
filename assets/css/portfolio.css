@@ -1,0 +1,34 @@
+/* --------------------- PORTFOLIO (Cabecera) --------------------*/
+
+.astar {
+    width: 1000px;
+    height: 1000px;
+
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin: 1vh auto;
+}
+
+.galery p {
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: bold;
+    word-spacing: 5px;
+}
+
+.galery strong {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-A);
+}
+
+.cover {
+    width: 1000px;
+    height: 1000px;
+
+    display: flex;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+    margin: 1vh auto;
+}

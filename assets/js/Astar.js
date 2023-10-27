@@ -1,20 +1,14 @@
-// Se crea el canvas
-const ASCanvas = document.getElementById("astar");
-const ASContext = ASCanvas.getContext("2d");
 
-const ASContainer = document.getElementById("astar-container");
+// Valores de distancias (rectas y diagonales)
+const LATERAL_WEIGHT = 1;
+const DIAGONAL_WEIGHT = Math.sqrt(2) * LATERAL_WEIGHT;
 
-function resizeCanvas() {
-    ASCanvas.width = document.body.scrollWidth;
-    ASCanvas.height = ASContainer.clientHeight;
-}
-
-// Se llama al principio para ajustar el tamaño inicial
-resizeCanvas();
-
-// Evento de reescalado de la ventana del navegador
-window.addEventListener('resize', resizeCanvas);
-
+// Colores de celdas
+const BACKGROUND_COLOR = `#4b1139`;
+const OBSTACLE_COLOR = `#3b4058`;
+const OPENLIST_COLOR = `#2a6e78`;
+const CLOSEDLIST_COLOR = `#7a907c`;
+const SOLUTION_COLOR = `rgb(${255}, ${255}, ${255})`;
 
 
 class Node {
@@ -45,12 +39,20 @@ class Node {
 
 class Grid {
     
-    constructor() {
-        this.cols = 150;
-        this.rows = Math.round(this.cols / (ASCanvas.width / ASCanvas.height));
+    constructor(canvas, cols, obstacleProbability) {
 
-        this.rowHeight = ASCanvas.height / this.rows;
-        this.colWidth = ASCanvas.width / this.cols;
+        /**
+        * Se le asignan el numero de columas y calcula el numero de
+        * filas para que tenga la misma resolucion que el canvas
+        */
+
+        this.cols = cols;
+        this.rows = Math.round(this.cols / (canvas.width / canvas.height));
+
+        this.rowHeight = canvas.height / this.rows;
+        this.colWidth = canvas.width / this.cols;
+
+        this.obstacleProbability = obstacleProbability;
 
         this.nodes = [];
         this.clear();
@@ -73,35 +75,26 @@ class Grid {
         for(let x = 0; x < this.cols; ++x) {
             for(let y = 0; y < this.rows; ++y) {
                 this.nodes[x + y * this.cols] = new Node(x, y);
-                this.nodes[x + y * this.cols].obstacle = Math.random() < 0.25
+                this.nodes[x + y * this.cols].obstacle = Math.random() < this.obstacleProbability;
             }
         }
     }
 
 }
 
-const LATERAL_WEIGHT = 1;
-const DIAGONAL_WEIGHT = Math.sqrt(2) * LATERAL_WEIGHT;
-
-const BACKGROUND_COLOR = `#4b1139`;
-const OBSTACLE_COLOR = `#3b4058`;
-const OPENLIST_COLOR = `#2a6e78`;
-const CLOSEDLIST_COLOR = `#7a907c`;
-
-const SOLUTION_COLOR = `rgb(${255}, ${255}, ${255})`;
-const STARTCELL_COLOR = `rgb(${228}, ${219}, ${219})`;
-const ENDCELL_COLOR = `rgb(${228}, ${219}, ${219})`;
-
 class AStar {
 
-    constructor() {
+    constructor(canvasId, containerId, cols, obstacleProbability) {
 
-        this.grid = new Grid();
+        this.canvasWrapper = new CanvasWrapper(canvasId, containerId);
+        this.canvas = this.canvasWrapper.getCanvas();
+        this.ctx = this.canvasWrapper.getContext();
 
-        this.openSet = new PriorityQueue();
+        this.grid = new Grid(this.canvas, cols, obstacleProbability);
 
-        this.solution = null;
+        this.openList = new PriorityQueue();
         this.closedList = [];
+        this.solution = null;
 
         this.timer = 0;
 
@@ -110,7 +103,9 @@ class AStar {
     }
 
     chooseRandomPoints() {
-        do {
+
+        while (this.solution == null) {
+
             let x1 = Math.floor(Math.random() * this.grid.getCols());
             let y1 = Math.floor(Math.random() * this.grid.getRows());
 
@@ -127,11 +122,9 @@ class AStar {
             this.end.obstacle = false;
 
             this.prepareRoute(this.start, this.end);
-            this.solution = this.routeA(this.start, this.end, this.x1, this.x2, this.y1, 
-                                    this.y2, this.i, this.j, this.node, this.neighbor);
+            this.solution = this.routeA(this.start, this.end, this.x1, this.x2, this.y1, this.y2, this.i, this.j, this.node, this.neighbor);
 
         }
-        while (this.solution == null);
 
         this.prepareRoute(this.start, this.end);
 
@@ -141,13 +134,13 @@ class AStar {
         this.solution = null;
         this.closedSet = [];
         this.closedList = [];
-        this.openSet.clear();
+        this.openList.clear();
 
         a.g = 0;
         a.h = this.heuristic(a, b);
         a.f = a.g + a.h;
 
-        this.openSet.add(a);
+        this.openList.add(a);
 
         this.x1 = 0; this.x2 = 0; 
         this.y1 = 0; this.y2 = 0; 
@@ -158,7 +151,7 @@ class AStar {
 
     algorithm(a, b, x1, x2, y1, y2, i, j, node, neighbor) {
 
-        node = this.openSet.poll();
+        node = this.openList.poll();
 
         if (node === b) {      
             return this.backTrace(a, b);
@@ -192,15 +185,15 @@ class AStar {
                             neighbor.h = h;
                             neighbor.f = f;
                             neighbor.parent = node;  
-                            this.openSet.remove(neighbor); 
-                            this.openSet.add(neighbor);
+                            this.openList.remove(neighbor); 
+                            this.openList.add(neighbor);
                         } 
-                        else if (!this.openSet.contains(neighbor)) { 
+                        else if (!this.openList.contains(neighbor)) { 
                             neighbor.g = g;
                             neighbor.h = h;
                             neighbor.f = f;
                             neighbor.parent = node;            
-                            this.openSet.add(neighbor);
+                            this.openList.add(neighbor);
                         }
                     }
                 }
@@ -216,7 +209,7 @@ class AStar {
 
         let sol = null;
 
-        while(this.openSet.size() > 0 && sol == null) {
+        while(this.openList.size() > 0 && sol == null) {
             sol = this.algorithm(a, b, x1, x2, y1, y2, i, j, node, neighbor)
         }
 
@@ -228,7 +221,7 @@ class AStar {
 
         let sol = null;
 
-        if (this.openSet.size() > 0 && sol == null) {
+        if (this.openList.size() > 0 && sol == null) {
             sol = this.algorithm(a, b, x1, x2, y1, y2, i, j, node, neighbor)
         }
 
@@ -238,15 +231,12 @@ class AStar {
 
     update(deltaTime) {
 
-        if (this.solution == null) {
-
-            this.solution = this.routeB(this.start, this.end, this.x1, this.x2, this.y1, 
-                                    this.y2, this.i, this.j, this.node, this.neighbor);
-
-        }
+        if (this.solution == null)
+            this.solution = this.routeB(this.start, this.end, this.x1, this.x2, this.y1, this.y2, this.i, this.j, this.node, this.neighbor);
         else {
             this.timer += deltaTime;
             if (this.timer > 2) {
+                this.solution = null;
                 this.chooseRandomPoints();
                 this.timer = 0;
             }
@@ -267,8 +257,8 @@ class AStar {
         // Dibuja el fondo
         let color = BACKGROUND_COLOR;
 
-        ASContext.fillStyle = color;
-        ASContext.fillRect(0, 0, ASCanvas.width, ASCanvas.height);
+        this.ctx.fillStyle = color;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         // Dibuja el mapa
         for (let i = 0; i < this.grid.getCols(); i++) {
@@ -279,8 +269,8 @@ class AStar {
                 if (this.grid.getNode(i, j).obstacle)
                     color = OBSTACLE_COLOR;
 
-                ASContext.fillStyle = color;
-                ASContext.fillRect(this.grid.colWidth * i, this.grid.rowHeight * j, this.grid.colWidth, this.grid.rowHeight);
+                this.ctx.fillStyle = color;
+                this.ctx.fillRect(this.grid.colWidth * i, this.grid.rowHeight * j, this.grid.colWidth, this.grid.rowHeight);
 
             }
         }
@@ -288,17 +278,17 @@ class AStar {
 
     renderOpenList() {
 
-        if (!this.openSet) return;
+        if (!this.openList) return;
 
-        const oS = this.openSet.get();
+        const oL = this.openList.get();
 
         // Dibuja la lista abierta
-        for (let i = 0; i < this.openSet.size(); i++) {
+        for (let i = 0; i < this.openList.size(); i++) {
 
-            let node = oS[i];
+            let node = oL[i];
 
-            ASContext.fillStyle = OPENLIST_COLOR;
-            ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
+            this.ctx.fillStyle = OPENLIST_COLOR;
+            this.ctx.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
 
         }
     }
@@ -310,8 +300,8 @@ class AStar {
 
         for (const node of this.closedList) {
 
-            ASContext.fillStyle = CLOSEDLIST_COLOR;
-            ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
+            this.ctx.fillStyle = CLOSEDLIST_COLOR;
+            this.ctx.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
 
         }
     }
@@ -324,8 +314,8 @@ class AStar {
         for(let i = 0; i < this.solution.length; ++i) {
             let node = this.solution[i];
 
-            ASContext.fillStyle = SOLUTION_COLOR;
-            ASContext.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
+            this.ctx.fillStyle = SOLUTION_COLOR;
+            this.ctx.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
 
         }
 
@@ -333,10 +323,9 @@ class AStar {
 
     renderStartAndEnd() {
         // Dibuja celda inicial y final
-        ASContext.fillStyle = STARTCELL_COLOR;
-        ASContext.fillRect(this.grid.colWidth * this.start.x, this.grid.rowHeight * this.start.y, this.grid.colWidth, this.grid.rowHeight);
-        ASContext.fillStyle = ENDCELL_COLOR;
-        ASContext.fillRect(this.grid.colWidth * this.end.x, this.grid.rowHeight * this.end.y, this.grid.colWidth, this.grid.rowHeight);
+        this.ctx.fillStyle = SOLUTION_COLOR;
+        this.ctx.fillRect(this.grid.colWidth * this.start.x, this.grid.rowHeight * this.start.y, this.grid.colWidth, this.grid.rowHeight);
+        this.ctx.fillRect(this.grid.colWidth * this.end.x, this.grid.rowHeight * this.end.y, this.grid.colWidth, this.grid.rowHeight);
     }
 
     // Distancia de Manhattan

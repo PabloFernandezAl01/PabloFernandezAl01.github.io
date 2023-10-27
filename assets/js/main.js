@@ -1,5 +1,5 @@
 // Animations list
-const animations = [];
+let animations = [];
 
 /**
  * Initialize the main properties
@@ -19,10 +19,10 @@ function drawShotFight() {
 }
 
 /**
- * Create ColorWave animation
+ * Create ColorWave animation (para secciones)
  */
-function drawColorWave() {
-    this.anim = new ColorWave();
+function drawColorWave(canvasId, containerId) {
+    this.anim = new ColorWave(canvasId, containerId);
     animations.push(this.anim);
     window.requestAnimationFrame(draw);
 }
@@ -30,8 +30,8 @@ function drawColorWave() {
 /**
  * Create AStar animation
  */
-function drawAStar() {
-    this.anim = new AStar();
+function drawAStar(canvasId, containerId, cols, obstacleProbability) {
+    this.anim = new AStar(canvasId, containerId, cols, obstacleProbability);
     animations.push(this.anim);
     window.requestAnimationFrame(draw);
 }

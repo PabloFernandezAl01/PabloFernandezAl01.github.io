@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Pablo Fernández Álvarez</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/projects.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/portfolio.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/contact.css">
+
+</head>
+
+<body onload="init(); drawColorWave('colorwave', 'projects-container');">
+
+
+    <!---------------------- Barra de navegación --------------------->
+    
+    <div class="navbar">
+        <a href="index.html#aboutme" target="_self" class="nav-link active">Sobre mí</a>
+        <a href="index.html#projects" target="_self" class="nav-link">Proyectos</a>
+        <a href="#contacto" target="_self" class="nav-link">Contacto</a>
+        <a href="assets/cv/CV-ES.pdf" target="_self" download="CV-ES.pdf" class="nav-link">CV</a>
+    </div>
+
+    <!------------------- Mi Portfolio ------------------->
+
+    <main class="cover" id="projects-container">
+        <h1>Shy</h1>
+        <canvas id="colorwave"></canvas>    
+    </main>
+
+
+    <!------------------ Descripción ------------------>
+
+    <div class="description">
+        <div class="container">
+
+            <h2>Descripción</h2>
+            <p>Añado mi portfolio como un proyecto más ya que he decidio implementar esta página web utilizando <strong>HTML, CSS y Javascript</strong> sin usar ninguna plantilla o librería como Thymeleaf o Bootstrap. Lo más destacable es el <strong>algoritmo de búsqueda de caminos A*</strong> que aparece en la portada de la web, la <strong>ola de colores</strong> que encabeza este apartado, la paleta de colores a elección del usuario, la batalla de misiles y el dibujado de circunferencias con el algoritmo del punto medio. Son retos de programación interesantes que dan vida a la web y mejoran su aspecto.</p>
+
+        </div>
+    </div>
+
+
+    <!------------------ Galería ------------------>
+
+    <div class="galery">
+        <div class="container">
+
+            <h2>Galería</h2>
+
+            <div class="item">
+                <h3>Algoritmo de búsqueda de caminos A*</h3>
+                <p>Impelementación del algoritmo de búsqueda de caminos A*. A estrella es un tipo de <strong>algoritmo de búsqueda en grafos</strong> de tipo heurístico o informado. Eso quiere decir que cuenta con información previa para tomar decisiones. Esta información previa se define como <strong>heurísitca</strong> y en este tipo de problemas de búsqueda de caminos, suele ser la distancia de Manhattan o la distancia Euclidiana.</p>
+
+                <p>Este mapa es un rectángulo de NxN en el cuál, al generarse, cada celda tiene un 30% de posibilidades de ser <strong>obstáculo</strong>. Cada 2 segundos, se eligen aleatoriamente dos puntos en el mapa que no sean obstáculo y que guarden una <strong>ruta válida</strong> entre ellos. Después, se simula el algoritmo dibujando las celda pertenecientes a la lista cerrada y a la lista abierta (conceptos del algoritmo). Cuando termina, se resalta en blanco la <strong>ruta solución</strong>.</p>
+
+                <!-- <main class="astar" id="astar-container">
+                    <canvas id="astar"></canvas>  
+                </main> -->
+            </div>
+
+            <div class="item">
+                <h3>Ola de colores</h3>
+                
+                <!-- <main class="cover" id="projects-container">
+                    <h1>Shy</h1>
+                    <canvas id="colorwave"></canvas>    
+                </main> -->
+                
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <!----------------- Contacto ------------------->
+
+    <div class="contacto" id="contacto">
+        <div class="container">
+            <h1>Contacto</h1>
+
+            <div class="info">
+                <div>
+                    <p>Donde encontrarme</p>
+                    <p>Las Rosas, 28017</p>
+                    <p>Madrid, España</p>
+                </div>
+              
+                <div>
+                    <p>Información de contacto</p>
+                    <p>pablofa01@gmail.com</p>
+                    <p>+34 675456362</p>
+                </div>
+        
+                <div>
+                    <p>Redes sociales</p>
+                    <p><a href="https://www.linkedin.com/in/pablo-fern%C3%A1ndez-%C3%A1lvarez-19b889246/">LinkedIn</a></p>
+                    <p><a href="https://github.com/PabloFernandezAl01">GitHub</a></p>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- Javascript -->
+    <script src="assets/js/Vector2D.js"></script>
+    <script src="assets/js/PriorityQueue.js"></script>
+    <script src="assets/js/CanvasWrapper.js"></script>
+    <script src="assets/js/Colorwave.js"></script>
+    <script src="assets/js/Astar.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
