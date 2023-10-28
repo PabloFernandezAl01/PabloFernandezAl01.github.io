@@ -12,8 +12,8 @@ function init() {
 /**
  * Create ShotFight animation
  */
-function drawShotFight() {
-    this.anim = new ShotFight();
+function drawShotFight(canvasId, containerId) {
+    this.anim = new ShotFight(canvasId, containerId);
     animations.push(this.anim);
     window.requestAnimationFrame(draw);
 }
@@ -21,8 +21,8 @@ function drawShotFight() {
 /**
  * Create ColorWave animation (para secciones)
  */
-function drawColorWave(canvasId, containerId) {
-    this.anim = new ColorWave(canvasId, containerId);
+function drawColorWave(canvasId, containerId, rows, speed) {
+    this.anim = new ColorWave(canvasId, containerId, rows, speed);
     animations.push(this.anim);
     window.requestAnimationFrame(draw);
 }

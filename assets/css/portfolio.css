@@ -10,6 +10,10 @@
     margin: 1vh auto;
 }
 
+#astar {
+    border-radius: 8px;
+}
+
 .galery p {
     line-height: 1.5;
     font-size: 20px;
@@ -20,15 +24,33 @@
 .galery strong {
     font-size: 20px;
     font-weight: bold;
-    color: var(--color-A);
+    color: var(--color-F);
 }
 
-.cover {
-    width: 1000px;
-    height: 1000px;
+.color {
+    width: 100%;
+    height: 600px;
 
     display: flex;
-    justify-content: center; /* Centra el contenido verticalmente */
-    align-items: center;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
     margin: 1vh auto;
+}
+
+#color {
+    border-radius: 8px;
+}
+
+.shotfight {
+    width: 100%;
+    height: 600px;
+
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin: 1vh auto;
+}
+
+#shotfight {
+    border-radius: 8px;
 }

@@ -5,19 +5,19 @@ const COLORS = ['4b1139', '3b4058', '2a6e78', '7a907c', 'c9b180']
 
 class ColorWave {
 
-	constructor(canvasId, containerId) {
+	constructor(canvasId, containerId, rows, speed) {
 
 		this.canvasWrapper = new CanvasWrapper(canvasId, containerId);
 		this.canvas = this.canvasWrapper.getCanvas();
 		this.ctx = this.canvasWrapper.getContext();
 		
-		this.rows = 180;
+		this.rows = rows;
 		this.rowHeight = this.canvas.height / this.rows;
 
 		this.hue = 0;
 		this.offset = 0; 
 		this.timer = 0;
-		this.speed = 80;
+		this.speed = speed;
 
 		this.srcColors = [];
 		this.destColors = [];

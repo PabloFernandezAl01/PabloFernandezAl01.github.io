@@ -16,6 +16,7 @@
     --color-C: #2a6e78;    /* rgb(192, 87, 111) */
     --color-D: #7a907c;   /* rgb(228, 134, 121) */
     --color-E: #c9b180;   /* rgb(254, 189, 132) */
+    --color-F: #ffd47e;   
 
 }
 
@@ -99,7 +100,7 @@ body {
 .aboutme strong {
     font-size: 20px;
     font-weight: bold;
-    color: var(--color-A); /* Color de resaltado personalizado */
+    color: var(--color-F); /* Color de resaltado personalizado */
 }
 
 .aboutme li {
@@ -172,7 +173,7 @@ body {
 
 .skills strong {
     font-weight: bold;
-    color: var(--color-A); 
+    color: var(--color-F); 
 }
 
 
@@ -211,7 +212,7 @@ body {
 
 .projects strong {
     font-weight: bold;
-    color: var(--color-A); 
+    color: var(--color-F); 
 }
 
 

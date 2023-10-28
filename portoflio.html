@@ -13,7 +13,8 @@
 
 </head>
 
-<body onload="init(); drawColorWave('colorwave', 'projects-container');">
+<body onload="init(); drawAStar('astar', 'astar-container', 90, 0.35); drawColorWave('colorwave', 'projects-container', 180, 80); 
+    drawColorWave('color', 'portwave', 32, 30); drawShotFight('shotfight', 'fight-container')">
 
 
     <!---------------------- Barra de navegación --------------------->
@@ -28,10 +29,9 @@
     <!------------------- Mi Portfolio ------------------->
 
     <main class="cover" id="projects-container">
-        <h1>Shy</h1>
+        <h1>Mi Portfolio</h1>
         <canvas id="colorwave"></canvas>    
     </main>
-
 
     <!------------------ Descripción ------------------>
 
@@ -39,7 +39,7 @@
         <div class="container">
 
             <h2>Descripción</h2>
-            <p>Añado mi portfolio como un proyecto más ya que he decidio implementar esta página web utilizando <strong>HTML, CSS y Javascript</strong> sin usar ninguna plantilla o librería como Thymeleaf o Bootstrap. Lo más destacable es el <strong>algoritmo de búsqueda de caminos A*</strong> que aparece en la portada de la web, la <strong>ola de colores</strong> que encabeza este apartado, la paleta de colores a elección del usuario, la batalla de misiles y el dibujado de circunferencias con el algoritmo del punto medio. Son retos de programación interesantes que dan vida a la web y mejoran su aspecto.</p>
+            <p>Añado mi portfolio como un proyecto más ya que he decidio implementar esta página web desde cero utilizando <strong>HTML, CSS y Javascript</strong> sin usar ninguna plantilla o librería como Thymeleaf o Bootstrap. Lo más destacable es el <strong>algoritmo de búsqueda de caminos A*</strong> que aparece en la portada de la web, la <strong>ola de colores</strong> que encabeza este apartado, la paleta de colores a elección del usuario, la batalla de misiles y el dibujado de circunferencias con el algoritmo del punto medio. Son retos de programación interesantes que dan vida a la web y mejoran su aspecto.</p>
 
         </div>
     </div>
@@ -58,19 +58,43 @@
 
                 <p>Este mapa es un rectángulo de NxN en el cuál, al generarse, cada celda tiene un 30% de posibilidades de ser <strong>obstáculo</strong>. Cada 2 segundos, se eligen aleatoriamente dos puntos en el mapa que no sean obstáculo y que guarden una <strong>ruta válida</strong> entre ellos. Después, se simula el algoritmo dibujando las celda pertenecientes a la lista cerrada y a la lista abierta (conceptos del algoritmo). Cuando termina, se resalta en blanco la <strong>ruta solución</strong>.</p>
 
-                <!-- <main class="astar" id="astar-container">
+                <main class="astar" id="astar-container">
                     <canvas id="astar"></canvas>  
-                </main> -->
+                </main>
+                
             </div>
 
             <div class="item">
                 <h3>Ola de colores</h3>
+
+                <p>Esta ola de colores ha sido generada en base a una <strong>lista de colores</strong>, cinco en concreto, que son los de la paleta de colores activa. Con esos colores se realiza una <strong>interpolación</strong> para obtener el resto de colores intermedios hasta llegar al número de filas. Es decir, si tenemos 25 filas en la ola y 5 colores fuente, entre cada color se generarán 4 colores de tal forma que 5 colores originales más 20 interpolados suman 25, que es el número de filas en la ola.</p>
+
+                <p>En las olas de colores de encabezado (las que aparecen al principio de la página) tienen 180 filas por lo que no se aprecian prácticamente. Sin embargo, este ejemplo cuenta con 32 filas.</p>
+
+                <p>Al generar los colores de forma interpolada dependiendo del número de filas destino y la lista de colores fuente, se pueden generar <strong>infinitas</strong> olas de distintos colores y filas.</p>
                 
-                <!-- <main class="cover" id="projects-container">
-                    <h1>Shy</h1>
-                    <canvas id="colorwave"></canvas>    
-                </main> -->
+                <main class="color" id="portwave">
+                    <canvas id="color"></canvas>    
+                </main>
                 
+            </div>
+
+            <div class="item">
+                <h3>Batalla de misiles</h3>
+
+                <p>En la batalla de misiles gana el bando que consiga meter más misiles en el <strong>lado contrario</strong>. La puntuación se ve reflejada en el fondo. La <strong>aleatoriedad</strong> con la que se generan los misiles, es decir, dirección, probabilidad de instanciación y velocidad hacen que sea intersante ver que bando va a tener más suerte y llevarse la <strong>victoria</strong>.</p>
+
+                <main class="shotfight" id="fight-container">
+                    <canvas id="shotfight"></canvas>    
+                </main>
+                
+            </div>
+
+            <h2>Proximamente...</h2>
+
+            <div>
+                <p>Algoritmo del punto medio para circunferencias</p>
+                <p>Paleta de colores</p>
             </div>
 
 
@@ -116,6 +140,7 @@
     <script src="assets/js/PriorityQueue.js"></script>
     <script src="assets/js/CanvasWrapper.js"></script>
     <script src="assets/js/Colorwave.js"></script>
+    <script src="assets/js/Shotfight.js"></script>
     <script src="assets/js/Astar.js"></script>
     <script src="assets/js/main.js"></script>
 

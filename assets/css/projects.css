@@ -16,7 +16,18 @@
     --color-C: #2a6e78;    /* rgb(192, 87, 111) */
     --color-D: #7a907c;   /* rgb(228, 134, 121) */
     --color-E: #c9b180;   /* rgb(254, 189, 132) */
+    --color-F: #ffd47e; 
 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-E);
+}
+
+.container {
+    margin-bottom: 1em;
 }
 
 .cover {
@@ -37,16 +48,6 @@
     position: absolute;
     color: white;
     font-family: 'Portfolio-Font', sans-serif;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--color-E);
-}
-
-.container {
-    margin-bottom: 1em;
 }
 
 
@@ -126,7 +127,7 @@ body {
 .description strong {
     font-size: 20px;
     font-weight: bold;
-    color: var(--color-A);
+    color: var(--color-F);
 }
 
 .description ul {
@@ -193,7 +194,7 @@ body {
 
 .contribution strong {
     font-weight: bold;
-    color: var(--color-A); 
+    color: var(--color-F); 
 }
 
 

@@ -1,32 +1,25 @@
-// Se crea el canvas
-const SFCanvas = document.getElementById("shotfight");
-const SFContext = SFCanvas.getContext("2d");
+// Colors
+const TEAMA_BACKGROUND = `rgb(42, 110, 120)`;
+const TEAMB_BACKGROUND = `rgb(201, 177, 128)`;
 
-const SFContainer = document.getElementById("shotfight-container");
-
-function resizeCanvas() {
-    SFCanvas.width = document.body.scrollWidth;
-    SFCanvas.height = SFContainer.clientHeight;
-}
-
-// Se llama al principio para ajustar el tamaño inicial
-resizeCanvas();
-
-// Evento de reescalado de la ventana del navegador
-window.addEventListener('resize', resizeCanvas);
+const TEAMA_SHOT = `rgb(70, 180, 193, 255)`;
+const TEAMB_SHOT = `rgb(250, 215, 144, 255)`;
 
 
-// Clase Shotfight encargada de la logica del dibujado
 class ShotFight {
 
-    constructor() {
+    constructor(canvasId, containerId) {
+
+        this.canvasWrapper = new CanvasWrapper(canvasId, containerId);
+		this.canvas = this.canvasWrapper.getCanvas();
+		this.ctx = this.canvasWrapper.getContext();
 
         this.x = 0;
         this.y = 0;
 
         this.score = 0.5;
-        this.redwins = 0;
-        this.bluewins = 0;
+        this.aWins = 0;
+        this.bWins = 0;
 
         this.timer = 0;
 
@@ -56,22 +49,22 @@ class ShotFight {
             this.shots[a].init(side);
     }
 
-    blueShotScore() {
+    aShotScore() {
         this.score += 0.05;
     }
 
-    redShotScore() {
+    bShotScore() {
         this.score -= 0.05;
     }
 
     render() {
 
         // Fondo (Campo de cada jugador)
-        SFContext.fillStyle = `rgb(217, 97, 83, 255)`;
-        SFContext.fillRect(0, 0, SFCanvas.width, SFCanvas.height)
+        this.ctx.fillStyle = TEAMA_BACKGROUND;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
-        SFContext.fillStyle = `rgb(132, 191, 195, 255)`;
-        SFContext.fillRect(0, 0, this.score * SFCanvas.width, SFCanvas.height)
+        this.ctx.fillStyle = TEAMB_BACKGROUND;
+        this.ctx.fillRect(0, 0, this.score * this.canvas.width, this.canvas.height)
 
         this.shots.forEach(function (value) {
             if (value.enabled) 
@@ -104,12 +97,12 @@ class ShotFight {
 
         // Victoria azul
         if (this.score >= 1) {
-            this.bluewins++;
+            this.bWins++;
             this.score = 0.5;
         }
         // Victoria roja
         else if (this.score <= 0) {
-            this.redwins++;
+            this.aWins++;
             this.score = 0.5;
         }
 
@@ -123,7 +116,11 @@ class Shot {
     constructor(idx, shotfight) {
         this.enabled = false;
         this.idx = idx;
+
         this.shotfight = shotfight;
+        this.canvas = this.shotfight.canvas;
+        this.ctx = this.shotfight.ctx;
+
         this.side = 0;
         this.position = new Vector2D();
         this.vel = 0;
@@ -134,9 +131,9 @@ class Shot {
         this.enabled = true;
         this.side = side;
 
-        let x = SFCanvas.width * this.side;
+        let x = this.canvas.width * this.side;
         // La altura de spawn esta mas centrada
-        let y = Math.random() * SFCanvas.height * 0.6 + 0.2 * SFCanvas.height;
+        let y = Math.random() * this.canvas.height * 0.6 + 0.2 * this.canvas.height;
 
         // Posición aleaotria
         this.position.x = x;
@@ -162,10 +159,10 @@ class Shot {
 
 
         // Color dependiendo del lado
-        this.color = `rgb(229, 132, 113, 255)`
+        this.color = TEAMA_SHOT
 
         if (!this.side)
-            this.color = `rgb(185, 235, 241, 255)`
+            this.color = TEAMB_SHOT
 
 
         // Tamaño
@@ -176,10 +173,10 @@ class Shot {
 
     render() {
 
-        SFContext.beginPath();
-        SFContext.fillStyle = this.color;
-        SFContext.arc(this.position.x, this.position.y, this.size, 0, Math.PI * 2, true);
-        SFContext.fill();
+        this.ctx.beginPath();
+        this.ctx.fillStyle = this.color;
+        this.ctx.arc(this.position.x, this.position.y, this.size, 0, Math.PI * 2, true);
+        this.ctx.fill();
 
     }
 
@@ -193,14 +190,14 @@ class Shot {
 
     disableOnBecameInvisible() {
 
-        if (this.position.x - this.radius > SFCanvas.width || this.position.x + this.radius < 0 || 
-                this.position.y - this.radius > SFCanvas.height || this.position.y + this.radius < 0) 
+        if (this.position.x - this.radius > this.canvas.width || this.position.x + this.radius < 0 || 
+                this.position.y - this.radius > this.canvas.height || this.position.y + this.radius < 0) 
         {
             this.enabled = false;
             this.shotfight.availabeShots.push(this.idx);
 
-            if (this.position.x - this.radius > SFCanvas.width) this.shotfight.blueShotScore();
-            else if (this.position.x + this.radius < 0) this.shotfight.redShotScore();
+            if (this.position.x - this.radius > this.canvas.width) this.shotfight.aShotScore();
+            else if (this.position.x + this.radius < 0) this.shotfight.bShotScore();
 
         }
 
