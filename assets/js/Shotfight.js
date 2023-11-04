@@ -160,10 +160,10 @@ class Shot {
 
 
         // Color dependiendo del lado
-        this.color = this.TEAMA_SHOT
+        this.color = this.shotfight.TEAMA_SHOT
 
         if (!this.side)
-            this.color = this.TEAMB_SHOT
+            this.color = this.shotfight.TEAMB_SHOT
 
 
         // Tamaño
