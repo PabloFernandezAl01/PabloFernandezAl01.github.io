@@ -1,14 +1,8 @@
-// Colors
-const TEAMA_BACKGROUND = `rgb(42, 110, 120)`;
-const TEAMB_BACKGROUND = `rgb(201, 177, 128)`;
-
-const TEAMA_SHOT = `rgb(70, 180, 193, 255)`;
-const TEAMB_SHOT = `rgb(250, 215, 144, 255)`;
-
-
 class ShotFight {
 
     constructor(canvasId, containerId) {
+
+        this.refreshColors();
 
         this.canvasWrapper = new CanvasWrapper(canvasId, containerId);
 		this.canvas = this.canvasWrapper.getCanvas();
@@ -32,6 +26,13 @@ class ShotFight {
             this.availabeShots.push(this.maxShots - 1 - i);
         }
 
+    }
+
+    refreshColors() {
+        this.TEAMA_BACKGROUND = document.documentElement.style.getPropertyValue('--color-B');
+        this.TEAMB_BACKGROUND = document.documentElement.style.getPropertyValue('--color-A');
+        this.TEAMA_SHOT = document.documentElement.style.getPropertyValue('--color-C');
+        this.TEAMB_SHOT = document.documentElement.style.getPropertyValue('--color-D');
     }
 
     availableShot() {
@@ -60,10 +61,10 @@ class ShotFight {
     render() {
 
         // Fondo (Campo de cada jugador)
-        this.ctx.fillStyle = TEAMA_BACKGROUND;
+        this.ctx.fillStyle = this.TEAMA_BACKGROUND;
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
-        this.ctx.fillStyle = TEAMB_BACKGROUND;
+        this.ctx.fillStyle = this.TEAMB_BACKGROUND;
         this.ctx.fillRect(0, 0, this.score * this.canvas.width, this.canvas.height)
 
         this.shots.forEach(function (value) {
@@ -159,10 +160,10 @@ class Shot {
 
 
         // Color dependiendo del lado
-        this.color = TEAMA_SHOT
+        this.color = this.TEAMA_SHOT
 
         if (!this.side)
-            this.color = TEAMB_SHOT
+            this.color = this.TEAMB_SHOT
 
 
         // Tamaño

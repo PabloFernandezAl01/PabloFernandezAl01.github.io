@@ -1,8 +1,6 @@
 
 // Lista de colores en formato RGB para la ola
 
-const COLORS = ['4b1139', '3b4058', '2a6e78', '7a907c', 'c9b180']
-
 class ColorWave {
 
 	constructor(canvasId, containerId, rows, speed) {
@@ -19,22 +17,32 @@ class ColorWave {
 		this.timer = 0;
 		this.speed = speed;
 
+		this.refreshColors();
+	}
+
+	refreshColors() {
+		this.COLOR_A = document.documentElement.style.getPropertyValue('--color-A').substring(1);
+        this.COLOR_B = document.documentElement.style.getPropertyValue('--color-B').substring(1);
+        this.COLOR_C = document.documentElement.style.getPropertyValue('--color-C').substring(1);
+        this.COLOR_D = document.documentElement.style.getPropertyValue('--color-D').substring(1);
+        this.COLOR_E = document.documentElement.style.getPropertyValue('--color-E').substring(1);
+
+		this.COLORS = [this.COLOR_A, this.COLOR_B, this.COLOR_C, this.COLOR_D, this.COLOR_E];
+		
 		this.srcColors = [];
 		this.destColors = [];
 
 		// Lista de colores en formato HSV
-		for (let color of COLORS)
+		for (let color of this.COLORS)
 			this.srcColors.push(hexToHSV(color));
 
-
-		let steps = Math.ceil((this.rows / (COLORS.length - 1)) / 2);
+		let steps = Math.ceil((this.rows / (this.COLORS.length - 1)) / 2);
 
 		// Se crea la lista con el mismo numero de colores que filas en la animacion a traves de interpolar los colores del array
-		for (let i = 0; i < COLORS.length - 1; i++)
+		for (let i = 0; i < this.COLORS.length - 1; i++)
 			this.destColors = this.destColors.concat(interpolateHSV(this.srcColors[i], this.srcColors[i + 1], steps));
 
 		this.destColors = this.destColors.concat(this.destColors.slice().reverse());
-
 	}
 
 	render () {

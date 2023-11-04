@@ -3,14 +3,6 @@
 const LATERAL_WEIGHT = 1;
 const DIAGONAL_WEIGHT = Math.sqrt(2) * LATERAL_WEIGHT;
 
-// Colores de celdas
-const BACKGROUND_COLOR = `#4b1139`;
-const OBSTACLE_COLOR = `#3b4058`;
-const OPENLIST_COLOR = `#2a6e78`;
-const CLOSEDLIST_COLOR = `#7a907c`;
-const SOLUTION_COLOR = `rgb(${255}, ${255}, ${255})`;
-
-
 class Node {
  
     constructor(x, y, obstacle = false) {
@@ -86,6 +78,9 @@ class AStar {
 
     constructor(canvasId, containerId, cols, obstacleProbability) {
 
+        // Colores de celdas
+        this.refreshColors();
+
         this.canvasWrapper = new CanvasWrapper(canvasId, containerId);
         this.canvas = this.canvasWrapper.getCanvas();
         this.ctx = this.canvasWrapper.getContext();
@@ -100,6 +95,14 @@ class AStar {
 
         this.chooseRandomPoints();
 
+    }
+
+    refreshColors() {
+        this.BACKGROUND_COLOR = document.documentElement.style.getPropertyValue('--color-A');
+        this.OBSTACLE_COLOR = document.documentElement.style.getPropertyValue('--color-B');
+        this.OPENLIST_COLOR = document.documentElement.style.getPropertyValue('--color-C');
+        this.CLOSEDLIST_COLOR = document.documentElement.style.getPropertyValue('--color-D');
+        this.SOLUTION_COLOR = document.documentElement.style.getPropertyValue('--color-F');
     }
 
     chooseRandomPoints() {
@@ -255,7 +258,7 @@ class AStar {
 
     renderMap() {
         // Dibuja el fondo
-        let color = BACKGROUND_COLOR;
+        let color = this.BACKGROUND_COLOR;
 
         this.ctx.fillStyle = color;
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -264,10 +267,10 @@ class AStar {
         for (let i = 0; i < this.grid.getCols(); i++) {
             for (let j = 0; j < this.grid.getRows(); j++) {
 
-                color = BACKGROUND_COLOR;
+                color = this.BACKGROUND_COLOR;
 
                 if (this.grid.getNode(i, j).obstacle)
-                    color = OBSTACLE_COLOR;
+                    color = this.OBSTACLE_COLOR;
 
                 this.ctx.fillStyle = color;
                 this.ctx.fillRect(this.grid.colWidth * i, this.grid.rowHeight * j, this.grid.colWidth, this.grid.rowHeight);
@@ -287,7 +290,7 @@ class AStar {
 
             let node = oL[i];
 
-            this.ctx.fillStyle = OPENLIST_COLOR;
+            this.ctx.fillStyle = this.OPENLIST_COLOR;
             this.ctx.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
 
         }
@@ -300,7 +303,7 @@ class AStar {
 
         for (const node of this.closedList) {
 
-            this.ctx.fillStyle = CLOSEDLIST_COLOR;
+            this.ctx.fillStyle = this.CLOSEDLIST_COLOR;
             this.ctx.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
 
         }
@@ -314,7 +317,7 @@ class AStar {
         for(let i = 0; i < this.solution.length; ++i) {
             let node = this.solution[i];
 
-            this.ctx.fillStyle = SOLUTION_COLOR;
+            this.ctx.fillStyle = this.SOLUTION_COLOR;
             this.ctx.fillRect(this.grid.colWidth * node.x, this.grid.rowHeight * node.y, this.grid.colWidth, this.grid.rowHeight);
 
         }
@@ -323,7 +326,7 @@ class AStar {
 
     renderStartAndEnd() {
         // Dibuja celda inicial y final
-        this.ctx.fillStyle = SOLUTION_COLOR;
+        this.ctx.fillStyle = this.SOLUTION_COLOR;
         this.ctx.fillRect(this.grid.colWidth * this.start.x, this.grid.rowHeight * this.start.y, this.grid.colWidth, this.grid.rowHeight);
         this.ctx.fillRect(this.grid.colWidth * this.end.x, this.grid.rowHeight * this.end.y, this.grid.colWidth, this.grid.rowHeight);
     }
