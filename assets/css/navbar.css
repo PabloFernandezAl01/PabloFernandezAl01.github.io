@@ -15,8 +15,8 @@
 
 .navbar a {
     height: 100%; /* Asegura que la altura sea igual a la del div.header */
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 2vw;
+    padding-right: 2vw;
     color: black;
     text-decoration: none;
     font-weight: bold;
