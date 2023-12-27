@@ -4,12 +4,12 @@
     background-color: var(--color-E);
     width: 100vw;
     text-align: center;
-    height: 5vh; /* Ajusta la altura según tus necesidades */
+    height: 6vh; /* Ajusta la altura según tus necesidades */
     display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 1000;
+    z-index: 1;
     top: 0;
 }
 
@@ -20,7 +20,7 @@
     color: black;
     text-decoration: none;
     font-weight: bold;
-    font-size: 3em;
+    font-size: 2.5rem;
     font-family: 'Portfolio-Font', sans-serif;
     transition: 0.3s;
     display: flex;
