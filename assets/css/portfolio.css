@@ -1,8 +1,8 @@
 /* --------------------- PORTFOLIO (Cabecera) --------------------*/
 
 .astar {
-    width: 1000px;
-    height: 1000px;
+    width: 60vw;
+    height: 60vh;
 
     display: flex;
     justify-content: center; /* Centra horizontalmente */
@@ -28,8 +28,8 @@
 }
 
 .color {
-    width: 100%;
-    height: 600px;
+    width: 60vw;
+    height: 60vh;
 
     display: flex;
     justify-content: center; /* Centra horizontalmente */
@@ -42,8 +42,8 @@
 }
 
 .shotfight {
-    width: 100%;
-    height: 600px;
+    width: 60vw;
+    height: 60vh;
 
     display: flex;
     justify-content: center; /* Centra horizontalmente */
