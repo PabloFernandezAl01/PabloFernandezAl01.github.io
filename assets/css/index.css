@@ -16,7 +16,7 @@ body {
 
 .portfolio-container {
     width: 100%;
-    height: 70vh;
+    height: 50vh;
 
     display: flex;
     justify-content: center; /* Centra el contenido verticalmente */
@@ -163,7 +163,7 @@ body {
 
 .projects-container {
     width: 100%;
-    height: 40vh;
+    height: 35vh;
 
     display: flex;
     justify-content: center; /* Centra el contenido verticalmente */
