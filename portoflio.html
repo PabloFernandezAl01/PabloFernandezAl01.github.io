@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio de Pablo Fernández Álvarez</title>
+    <title>Portfolio Project</title>
 
     <link rel="stylesheet" type="text/css" href="assets/css/projects.css">
     <link rel="stylesheet" type="text/css" href="assets/css/portfolio.css">
@@ -37,23 +37,23 @@
                   <img src="assets/img/paletteA.png" alt="Paleta 2">
                 </div>
                 <div class="option" data-value="paleta3">
-                    <img src="assets/img/paletteB.png" alt="Paleta 2">
+                    <img src="assets/img/paletteB.png" alt="Paleta 3">
                 </div>
                 <div class="option" data-value="paleta4">
-                    <img src="assets/img/paletteC.png" alt="Paleta 2">
+                    <img src="assets/img/paletteC.png" alt="Paleta 4">
                 </div>
                 <div class="option" data-value="paleta5">
-                    <img src="assets/img/paletteD.png" alt="Paleta 2">
+                    <img src="assets/img/paletteD.png" alt="Paleta 5">
                 </div>
               </div>
 
             </div>
         </div>
           
-        <a href="index.html#aboutme" target="_self" class="nav-link active">Sobre mí</a>
-        <a href="index.html#projects" target="_self" class="nav-link">Proyectos</a>
-        <a href="#contacto" target="_self" class="nav-link">Contacto</a>
-        <a href="certificados.html" target="_blank" class="nav-link">Certificados</a>
+        <a href="#aboutme" target="_self" class="nav-link active">About me</a>
+        <a href="#projects" target="_self" class="nav-link">Projects</a>
+        <a href="#contacto" target="_self" class="nav-link">Contact</a>
+        <a href="certificados.html" target="_blank" class="nav-link">Certificates</a>
         <a href="assets/cv/CV-ES.pdf" target="_self" download="CV-ES.pdf" class="nav-link">CV</a>
     </div>
 
@@ -69,8 +69,8 @@
     <div class="description">
         <div class="container">
 
-            <h2>Descripción</h2>
-            <p>Añado mi portfolio como un proyecto más ya que he decidio implementar esta página web desde cero utilizando <strong>HTML, CSS y Javascript</strong> sin usar ninguna plantilla o librería como Thymeleaf o Bootstrap. Lo más destacable es el <strong>algoritmo de búsqueda de caminos A*</strong> que aparece en la portada de la web, la <strong>ola de colores</strong> que encabeza este apartado, la paleta de colores a elección del usuario, la batalla de misiles y el dibujado de circunferencias con el algoritmo del punto medio. Son retos de programación interesantes que dan vida a la web y mejoran su aspecto.</p>
+            <h2>Description</h2>
+            <p>I add my portfolio as another project since I decided to implement this website from scratch using <strong>HTML, CSS, and Javascript</strong> without using any templates or libraries like Thymeleaf or Bootstrap. The most noteworthy features include the <strong>A* pathfinding algorithm</strong> on the homepage, the <strong>color wave</strong> at the top of this section, the user-selectable color palette, the missile battle, and the drawing of circles using the midpoint algorithm. These are interesting programming challenges that bring the website to life and enhance its appearance.</p>
 
         </div>
     </div>
@@ -81,13 +81,13 @@
     <div class="galery">
         <div class="container">
 
-            <h2>Galería</h2>
+            <h2>Gallery</h2>
 
             <div class="item">
-                <h3>Algoritmo de búsqueda de caminos A*</h3>
-                <p>Impelementación del algoritmo de búsqueda de caminos A*. A estrella es un tipo de <strong>algoritmo de búsqueda en grafos</strong> de tipo heurístico o informado. Eso quiere decir que cuenta con información previa para tomar decisiones. Esta información previa se define como <strong>heurísitca</strong> y en este tipo de problemas de búsqueda de caminos, suele ser la distancia de Manhattan o la distancia Euclidiana.</p>
+                <h3>A* Pathfinding Algorithm</h3>
+                <p>Implementation of the A* pathfinding algorithm. A* is a type of <strong>heuristic or informed graph search algorithm</strong>. This means it has prior information to make decisions. This prior information is defined as <strong>heuristic</strong>, and in these pathfinding problems, it is often the Manhattan distance or the Euclidean distance.</p>
 
-                <p>Este mapa es un rectángulo de NxN en el cuál, al generarse, cada celda tiene un 30% de posibilidades de ser <strong>obstáculo</strong>. Cada 2 segundos, se eligen aleatoriamente dos puntos en el mapa que no sean obstáculo y que guarden una <strong>ruta válida</strong> entre ellos. Después, se simula el algoritmo dibujando las celdas pertenecientes a la lista cerrada y a la lista abierta (conceptos del algoritmo). Cuando termina, se resalta la <strong>ruta solución</strong>.</p>
+                <p>This map is an NxN rectangle in which, upon generation, each cell has a 30% chance of being an <strong>obstacle</strong>. Every 2 seconds, two points on the map that are not obstacles and have a valid path between them are randomly chosen. Then, the algorithm is simulated by drawing the cells belonging to the closed list and the open list (algorithm concepts). When it finishes, the <strong>solution path</strong> is highlighted.</p>
 
                 <main class="astar" id="astar-container">
                     <canvas id="astar"></canvas>  
@@ -96,13 +96,13 @@
             </div>
 
             <div class="item">
-                <h3>Ola de colores</h3>
+                <h3>Color Wave</h3>
 
-                <p>Esta ola de colores ha sido generada en base a una <strong>lista de colores</strong>, cinco en concreto, que son los de la paleta de colores activa. Con esos colores se realiza una <strong>interpolación</strong> para obtener el resto de colores intermedios hasta llegar al número de filas. Es decir, si tenemos 25 filas en la ola y 5 colores fuente, entre cada color se generarán 4 colores de tal forma que 5 colores originales más 20 interpolados suman 25, que es el número de filas en la ola.</p>
+                <p>This color wave has been generated based on a <strong>list of colors</strong>, specifically five, which are the colors of the active color palette. With these colors, an <strong>interpolation</strong> is performed to obtain the rest of the intermediate colors until reaching the number of rows. That is, if we have 25 rows in the wave and 5 source colors, 4 colors will be generated between each original color, so that 5 original colors plus 20 interpolated colors add up to 25, which is the number of rows in the wave.</p>
 
-                <p>En las olas de colores de encabezado (las que aparecen al principio de la página) tienen 180 filas por lo que no se aprecian prácticamente. Sin embargo, este ejemplo cuenta con 32 filas.</p>
+                <p>In the header color waves (those that appear at the beginning of the page), there are 180 rows, so they are hardly noticeable. However, this example has 32 rows.</p>
 
-                <p>Al generar los colores de forma interpolada dependiendo del número de filas destino y la lista de colores fuente, se pueden generar <strong>infinitas</strong> olas de distintos colores y filas.</p>
+                <p>By generating colors in an interpolated manner depending on the number of destination rows and the source color list, you can create <strong>infinite</strong> waves of different colors and rows.</p>
                 
                 <main class="color" id="portwave">
                     <canvas id="color"></canvas>    
@@ -111,9 +111,9 @@
             </div>
 
             <div class="item">
-                <h3>Batalla de misiles</h3>
+                <h3>Missile Battle</h3>
 
-                <p>En la batalla de misiles gana el bando que consiga meter más misiles en el <strong>lado contrario</strong>. La puntuación se ve reflejada en el fondo. La <strong>aleatoriedad</strong> con la que se generan los misiles, es decir, dirección, probabilidad de instanciación y velocidad hacen que sea intersante ver que bando va a tener más suerte y llevarse la <strong>victoria</strong>.</p>
+                <p>In the Missile Battle, the side that manages to get more missiles to the <strong>opposite side</strong> wins. The score is reflected in the background. The <strong>randomness</strong> in the generation of missiles, i.e., direction, instantiation probability, and speed, makes it interesting to see which side will be luckier and secure the <strong>victory</strong>.</p>
 
                 <main class="shotfight" id="fight-container">
                     <canvas id="shotfight"></canvas>    
@@ -122,22 +122,21 @@
             </div>
 
             <div class="item">
-                <h3>Paleta de colores</h3>
+                <h3>Color palette</h3>
 
-                <p>Los colores de los elementos de la web y de las animaciones dependen de la paleta actual seleccionada.</p>
+                <p>The colors of the web elements and animations depend on the currently selected palette, providing a customizable and theme-centric visual experience.</p>
 
                 <img src="assets/img/paleta.png">
                 
             </div>
 
-            <h2>Proximamente...</h2>
+            <h2>Coming soon...</h2>
 
             <div>
-                <p>¿Algoritmo del punto medio para circunferencias?</p>
-                <p>¿Algoritmos de ordenacion?</p>
-                <p>¿Minijuego en Phaser?</p>
+                <p>Midpoint algorithm for circles?</p>
+                <p>Sorting algorithms visualization?</p>
+                <p>Mini-game in Phaser?</p>
             </div>
-
 
         </div>
     </div>
@@ -148,29 +147,28 @@
 
     <div class="contacto" id="contacto">
         <div class="container">
-            <h1>Contacto</h1>
+            <h1>Contact</h1>
 
             <div class="info">
                 <div>
-                    <p>Donde encontrarme</p>
+                    <p>Where to find me</p>
                     <p>Las Rosas, 28017</p>
                     <p>Madrid, España</p>
                 </div>
               
                 <div>
-                    <p>Información de contacto</p>
+                    <p>Contact information</p>
                     <p>pablofa01@gmail.com</p>
                     <p>+34 675456362</p>
                 </div>
         
                 <div>
-                    <p>Redes sociales</p>
+                    <p>Social</p>
                     <p><a href="https://www.linkedin.com/in/pablo-fern%C3%A1ndez-%C3%A1lvarez-19b889246/">LinkedIn</a></p>
                     <p><a href="https://github.com/PabloFernandezAl01">GitHub</a></p>
                 </div>
 
             </div>
-
 
         </div>
     </div>
