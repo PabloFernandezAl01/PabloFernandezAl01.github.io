@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pablo Fernández Álvarez Portfolio</title>
+    <title>Custom Engine Project</title>
 
     <link rel="stylesheet" type="text/css" href="assets/css/projects.css">
     <link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
@@ -48,50 +48,53 @@
             </div>
         </div>
           
-        <a href="index.html#aboutme" target="_self" class="nav-link">About me</a>
+        <a href="index.html#aboutme" target="_self" class="nav-link active">About me</a>
         <a href="index.html#projects" target="_self" class="nav-link">Projects</a>
         <a href="#contacto" target="_self" class="nav-link">Contact</a>
-        <a href="certificados.html" target="_self" class="nav-link active">Certificates</a>
+        <a href="certificados.html" target="_blank" class="nav-link">Certificates</a>
         <a href="assets/cv/CV-ES.pdf" target="_self" download="CV-ES.pdf" class="nav-link">CV</a>
     </div>
 
-    <!------------------- Certificados ------------------->
+    <!------------------- Shy ------------------->
 
     <main class="cover" id="projects-container">
-        <h1>Certificates</h1>
+        <h1>Custom 2D/3D Engine</h1>
         <canvas id="colorwave"></canvas>    
     </main>
 
-    <!------------------ Galería ------------------>
 
-    <div class="galery">
+    <!------------------ Links ----------------->
 
+    <div class="links">
         <div class="container">
-
-            <div class="item">
-                <h3>Bachelor's Degree</h3>
-                <img src="assets/img/Titulo.png">
-            </div>
-
-        </div>
-
-        <div class="container">
-
-            <div class="item">
-                <h3>English Cambridge C1 Advanced</h3>
-                <img src="assets/img/CertificadoC1.jpg">
-            </div>
-
-        </div>
-
-        <div class="container">
-
-            <div class="item">
-                <h3>Unreal Engine 5 C++: The Ultimate Game Developer Course</h3>
-                <img src="assets/img/CertificateUnreal.jpg">
-            </div>
+            <h1>Links</h1>
+            <a href="http://github.com/PabloFernandezAl01/OwnEngine">Repository</a>
         </div>
     </div>
+
+    <!------------------ Descripción ------------------>
+
+    <div class="description">
+        <div class="container">
+
+            <h2>Description</h2>
+            <p>The goal of this personal project is to learn <strong>game engine development</strong>. For that, I isolated the Engine part of my final degree project and started making enhacements. As a brief summary, the engine is divided into several parts: <strong>Core/Utilities</strong>, <strong>IO System</strong> with support for mouse, keyboard and multiple controllers, <strong>Physics System</strong> (uses Box2D), <strong>Entity-Component-System</strong> (The runtime arquitecture model), <strong>Rendering System</strong> (uses SDLImage) and <strong>Sound System</strong> (uses SDLMixer)</p>
+            
+            <p>My intention is to make the engine 3D implementing my own rendering system.</p>
+
+        </div>
+    </div>
+
+
+    <!------------------ Galería ------------------>
+
+    <!-- <div class="galery">
+        <div class="container">
+
+            <h2>Gallery</h2>
+
+        </div>
+    </div> -->
 
     
     <!----------------- Contacto ------------------->
