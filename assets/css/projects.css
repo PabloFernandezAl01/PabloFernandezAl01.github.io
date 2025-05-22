@@ -105,6 +105,12 @@ body {
     margin-bottom: 2rem;
 }
 
+.description h3 {
+    font-size: 3rem;
+    margin-top: 5vh;
+    margin-bottom: 2rem;
+}
+
 .description p {
     line-height: 1.5;
     font-size: 1.2rem;
@@ -159,6 +165,10 @@ body {
 
 .description .libraries .box2d{
     margin-bottom: 5vh;
+}
+
+.description .libraries .Tiled{
+    max-width: 30vw;
 }
 
 .description .libraries .scripting{
@@ -254,6 +264,12 @@ body {
 }
 
 .galery img {
+    max-width: 60vw;
+    max-height: 70vh;
+    border-radius: 5px;
+}
+
+.galery video {
     max-width: 60vw;
     max-height: 70vh;
     border-radius: 5px;

@@ -55,7 +55,7 @@
         <a href="assets/cv/CV-ES.pdf" target="_self" download="CV-ES.pdf" class="nav-link">CV</a>
     </div>
 
-    <!------------------- Shy ------------------->
+    <!------------------- Custom 2D/3D Engine ------------------->
 
     <main class="cover" id="projects-container">
         <h1>Custom 2D/3D Engine</h1>
@@ -80,7 +80,36 @@
             <h2>Description</h2>
             <p>The goal of this personal project is to learn <strong>game engine development</strong>. For that, I isolated the Engine part of my final degree project and started making enhacements. As a brief summary, the engine is divided into several parts: <strong>Core/Utilities</strong>, <strong>IO System</strong> with support for mouse, keyboard and multiple controllers, <strong>Physics System</strong> (uses Box2D), <strong>Entity-Component-System</strong> (The runtime arquitecture model), <strong>Rendering System</strong> (uses SDLImage) and <strong>Sound System</strong> (uses SDLMixer)</p>
             
-            <p>My intention is to make the engine 3D implementing my own rendering system.</p>
+            <p>
+                My goal for this project is divided in 3 main parts:<br>
+                1.- Improve the 2D engine and <strong>create some tools</strong>, make a <strong>simple game</strong> with it to showcase it's posibilities.<br>
+                2.- Make it 3D using OGRE and Bullet3D/PhysX and create a simple scene with all the 3D additions.<br>
+                3.- Implement my own <strong>graphics API/Layer</strong> over OpenGL/Vulkan (Materials, Modles, Rendering Pipelines, Light, Animations.. etc.).
+            </p>
+
+            <h3>Improving the 2D engine / New tools</h3>
+            <p>
+                + Removed <strong>scripting module</strong> from the engine<br>
+                + Created <strong>automation script</strong> to build dependencies and compile the engine<br>
+                + Fixed some bugs in <strong>physics components</strong> such as BoxBody and CircleBody<br>
+                + Added <strong>world raycast</strong> to the engine<br>
+                + Added <strong>breakable system</strong> using <strong>voronoi subdivision algorithm</strong><br>
+                + Added a proper <strong>render ordering system</strong><br>
+                + Added component <strong>"AtlasImage"</strong> for rendering a <strong>custom texture</strong> composed of diferent images<br>
+                + Added component <strong>"CustomBody"</strong> to create Box2D polygons<br>
+                + Added component <strong>"CustomImage"</strong> for rendering images with <strong>custom texture coordinates</strong><br>
+            </p>
+
+           <h3>Cool things about the Angry Birds clone:</h3>
+            <p>
+                + Trajectory <strong>prediction</strong> system with Raycast<br>
+                + Uses <strong>tileson lilbrary</strong> to read maps from TILED (TILED works as my world editor)<br>
+                + The blocks to build the level have Breakable components so are destructible by the player (bird)
+            </p>
+
+            <div class="libraries">
+                <img class="Tiled" src="assets/img/CustomEngine/Tiledmap.jpg" alt="TILED">
+            </div>
 
         </div>
     </div>
@@ -88,14 +117,29 @@
 
     <!------------------ Galería ------------------>
 
-    <!-- <div class="galery">
+    <div class="galery">
         <div class="container">
 
             <h2>Gallery</h2>
 
-        </div>
-    </div> -->
+            <div class="item">
+                <h3>Breakable system with Voronoi subdivision</h3>
+                <video autoplay loop muted playsinline>
+                    <source src="assets/videos/Breakable.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
 
+            <div class="item">
+                <h3>TILED levels</h3>
+                <video autoplay loop muted playsinline>
+                    <source src="assets/videos/Level.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+
+        </div>
+    </div>
     
     <!----------------- Contacto ------------------->
 
