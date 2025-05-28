@@ -87,6 +87,13 @@
                 3.- Implement my own <strong>graphics API/Layer</strong> over OpenGL/Vulkan (Materials, Modles, Rendering Pipelines, Light, Animations.. etc.).
             </p>
 
+            <h3>Learning new stuff</h3>
+            <p>
+                + Learned to use <strong>Memory deleaker</strong> to track memory leaks deeply<br>
+                + Learned how to use a <strong>Profiler tool</strong><br>
+                + Learned about <strong>Concurrent Programming</strong>
+            </p>
+
             <h3>Improving the 2D engine / New tools</h3>
             <p>
                 + Removed <strong>scripting module</strong> from the engine<br>
@@ -97,14 +104,14 @@
                 + Added a proper <strong>render ordering system</strong><br>
                 + Added component <strong>"AtlasImage"</strong> for rendering a <strong>custom texture</strong> composed of diferent images<br>
                 + Added component <strong>"CustomBody"</strong> to create Box2D polygons<br>
-                + Added component <strong>"CustomImage"</strong> for rendering images with <strong>custom texture coordinates</strong><br>
+                + Added component <strong>"CustomImage"</strong> for rendering images with <strong>custom texture coordinates</strong> so the engine user can draw textured polygons<br>
             </p>
 
            <h3>Cool things about the Angry Birds clone:</h3>
             <p>
                 + Trajectory <strong>prediction</strong> system with Raycast<br>
-                + Uses <strong>tileson lilbrary</strong> to read maps from TILED (TILED works as my world editor)<br>
-                + The blocks to build the level have Breakable components so are destructible by the player (bird)
+                + Used <strong>tileson lilbrary</strong> to read maps from TILED (TILED works as my world editor)<br>
+                + The blocks used to build the level have Breakable components so are destructible by the player (bird)
             </p>
 
             <div class="libraries">
@@ -120,7 +127,26 @@
     <div class="galery">
         <div class="container">
 
-            <h2>Gallery</h2>
+            <h1>Gallery</h1>
+            <h2>2D</h2>
+
+            <div class="item">
+                <h3>Angry birds gameplay</h3>
+                <video autoplay loop muted playsinline>
+                    <source src="assets/videos/Gameplay.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+
+            <div class="item">
+                <h3>Levels</h3>
+                <div class="image-grid">
+                    <img src="assets/img/CustomEngine/Level1.PNG" alt="Arriba izquierda">
+                    <img src="assets/img/CustomEngine/Level2.PNG" alt="Arriba derecha">
+                    <img src="assets/img/CustomEngine/Level3.PNG" alt="Abajo izquierda">
+                    <img src="assets/img/CustomEngine/Level4.PNG" alt="Abajo derecha">
+                </div>
+            </div>
 
             <div class="item">
                 <h3>Breakable system with Voronoi subdivision</h3>
@@ -131,9 +157,9 @@
             </div>
 
             <div class="item">
-                <h3>TILED levels</h3>
+                <h3>Parallax</h3>
                 <video autoplay loop muted playsinline>
-                    <source src="assets/videos/Level.mp4" type="video/mp4">
+                    <source src="assets/videos/Parallax.mp4" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
             </div>

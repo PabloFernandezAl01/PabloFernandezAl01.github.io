@@ -250,6 +250,11 @@ body {
     color: #fff;
 }
 
+.galery h1 {
+    font-size: 5rem;
+    margin-top: 2vh;
+}
+
 .galery h2 {
     font-size: 3rem;
     margin-top: 2vh;
@@ -273,4 +278,17 @@ body {
     max-width: 60vw;
     max-height: 70vh;
     border-radius: 5px;
+}
+
+.image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px; /* espacio entre imágenes */
+    }
+
+.image-grid img {
+    max-width: 29vw;
+    max-height: 35vh;
+    height: auto;
+    display: block;
 }
