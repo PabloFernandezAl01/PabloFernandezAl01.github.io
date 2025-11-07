@@ -426,7 +426,7 @@
 
       <h3 class="subtitle text-center mb-4">In-progress 3D Custom Engine with OGRE3D</h3>
       <p class="text-center">
-        Text
+        The goal of this project is to learn about <strong>3D engine development</strong>. To achieve this, I will convert my 2D engine into a 3D one. This requires replacing the necessary modules; I will build the engine <strong>around OGRE3D</strong>, which is a <strong>middleware library</strong> that abstracts the user from low-level graphics concepts and provides a <strong>scene and resource manager</strong>, among other features. For example, for physics, I will switch from using Box2D, which is a 2D physics library, to using <strong>Bullet3D or PhysX</strong>. The same happens with the Audio module, etc. For the user, the gameplay architecture will remain the same, but internally I will reuse the ECS from the 2D engine and <strong>integrate it with OGRE’s entity and node system</strong>.
       </p>
       <div class="image-grid mb-5">
         <a href="https://github.com/PabloFernandezAl01/3DEngineOGRE" target="_blank">
@@ -444,26 +444,28 @@
 
       <h3 class="subtitle text-center mb-4">Enhacements to 2D Engine from Final Degree Project</h3>
       <p class="text-center">
-        Text
+        The goal of this personal project is to learn <strong>game engine development</strong>. For that, I isolated the Engine part of my final degree project and started <strong>making enhancements</strong>. As a brief summary, the engine is divided into several parts: <strong>Core/Utilities</strong>, <strong>IO System</strong> with support for mouse, keyboard and multiple controllers, <strong>Physics System</strong> (uses Box2D), <strong>Entity-Component-System</strong> (The runtime architecture model), <strong>Rendering System</strong> (uses SDLImage) and <strong>Sound System</strong> (uses SDLMixer).
+
+        The goal is to improve the 2D engine and <strong>create some tools</strong>, <strong>make a simple game</strong> with it to showcase it's posibilities.
       </p>
       <div class="image-grid mb-5">
 
         <a href="https://github.com/PabloFernandezAl01/2DEngine" target="_blank">
           <video autoplay loop muted playsinline>
-          <source src="images/Gameplay.mp4" type="video/mp4">
-        </video>
+            <source src="images/Gameplay.mp4" type="video/mp4">
+          </video>
         </a>
 
         <a href="https://github.com/PabloFernandezAl01/2DEngine" target="_blank">
           <video autoplay loop muted playsinline>
-          <source src="images/Breakable.mp4" type="video/mp4">
-        </video>
+            <source src="images/Breakable.mp4" type="video/mp4">
+          </video>
         </a>
       </div>
 
-      <h3 class="subtitle text-center mb-4">Shy Engine | 2D Engine for Non-Programmers</h3>
+      <h3 class="subtitle text-center mb-4">Shy Engine | 2D Engine for Non-Programmers (Final Degree Project)</h3>
       <p class="text-center">
-        <p>Shy is the name of the project we developed as a team of three for the <strong>final degree project</strong> (TFG). It is a 2D <strong>game engine and editor</strong> designed for <strong>non-programmers</strong>. The objective is to provide a tool for creating <strong>simple 2D games</strong> with a lower learning curve compared to the more commonly used engines today, focusing on individuals with <strong>limited experience</strong> in programming or game development in general. The development of the project was divided into three main parts: <strong>core engine, editor and scripting system</strong></p>
+        Shy is the name of the project we developed as a team of three for the <strong>final degree project</strong> (TFG). It is a 2D <strong>game engine and editor</strong> designed for <strong>non-programmers</strong>. The objective is to provide a tool for creating <strong>simple 2D games</strong> with a lower learning curve compared to the more commonly used engines today, focusing on individuals with <strong>limited experience</strong> in programming or game development in general. The development of the project was divided into three main parts: <strong>core engine, editor and scripting system</strong>
       </p>
       <div class="image-grid mb-5">
 
@@ -473,7 +475,50 @@
 
         <a href="https://github.com/sryojhan/ShyEngine" target="_blank">
           <img src="images/script.PNG" class="img-fluid" alt="Pablo Fernandez" />
-        </video>
+        </a>
+      </div>
+
+      <h3 class="subtitle text-center mb-4">DOME | 2D Survival-Shooter game developed using SDL</h3>
+      <p class="text-center">
+        <strong>DOME</strong> is a <strong>2D survival shooter</strong> set on the frozen planet <strong>Aurora</strong>, where the player controls one of the <strong>last survivors</strong> of a failed colony. Each day is divided into two phases:<br>  
+
+        <strong>Daytime (12 hours):</strong> explore and loot various locations (<strong>pharmacies</strong>, <strong>supermarkets</strong>, etc.) for resources like <strong>food</strong> and <strong>medicine</strong>, limited by the player’s <strong>condition</strong> and <strong>inventory</strong>.<br>
+        <strong>Nighttime (12 hours):</strong> return to the <strong>shelter</strong> to <strong>craft</strong>, <strong>manage resources</strong>, <strong>heal</strong>, and <strong>rest</strong>. Each night offers <strong>five action points</strong> to perform tasks before sleeping.<br><br>
+
+        The ultimate goal is to <strong>collect spaceship parts</strong> to <strong>rebuild</strong> and <strong>escape the planet</strong> while surviving the <strong>extreme cold</strong> and managing <strong>health</strong>, <strong>fatigue</strong>, and <strong>supplies</strong>.
+
+      </p>
+      <div class="image-grid mb-5">
+
+        <a href="https://github.com/iquintasALT/DOME" target="_blank">
+          <video autoplay loop muted playsinline>
+            <source src="images/DOMEGameplay.mp4" type="video/mp4">
+          </video>
+        </a>
+
+        <a href="https://github.com/iquintasALT/DOME" target="_blank">
+          <video autoplay loop muted playsinline>
+            <source src="images/dome.mp4" type="video/mp4">
+          </video>
+        </a>
+      </div>
+
+      <h3 class="subtitle text-center mb-4">Mini-games developed using PS4 Development Kit</h3>
+      <p class="text-center">
+        <p>Some minigames programmed using a <strong>PS4 Development Kit</strong>. They were implemented using <strong>CPU for rendering</strong>, using two threads: one for logic processing and the other for rendering. The logic thread sends render commands to the render thread, which then processes them. Communication was facilitated through a <strong>concurrent queue</strong>. Something cool to mention is that the player can move the cursor with the <strong>controller gyroscope</strong></p>
+      </p>
+      <div class="image-grid mb-5">
+
+        <a href="https://www.youtube.com/watch?v=U8fCeJs2UU4" target="_blank">
+          <video autoplay loop muted playsinline>
+            <source src="images/DuckHunt.mp4" type="video/mp4">
+          </video>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=2S76HW7uBvg" target="_blank">
+          <video autoplay loop muted playsinline>
+            <source src="images/MissileCommand.mp4" type="video/mp4">
+          </video>
         </a>
       </div>
       
