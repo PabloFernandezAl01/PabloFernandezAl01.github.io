@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pablo's Portfolio</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/palette.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/contact.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/translate.css">
+
+</head>
+
+<body onload="init(); drawAStar('astar', 'astar-container', 130, 0.3); drawColorWave('colorwave', 'projects-container', 180, 80);">
+
+
+    <!---------------------- Barra de navegación --------------------->
+    
+    <div class="navbar">
+
+        <div class="palette-selector">
+            <div class="custom-select" id="custom-select">
+
+              <div class="selected-option">
+                <img src="assets/img/mainpalette.png" alt="Paleta 1">
+              </div>
+
+              <div class="options">
+                <div class="option" data-value="paleta1">
+                  <img src="assets/img/mainpalette.png" alt="Paleta 1">
+                </div>
+                <div class="option" data-value="paleta2">
+                  <img src="assets/img/paletteA.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta3">
+                    <img src="assets/img/paletteB.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta4">
+                    <img src="assets/img/paletteC.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta5">
+                    <img src="assets/img/paletteD.png" alt="Paleta 2">
+                </div>
+              </div>
+
+            </div>
+        </div>
+
+        <a href="#aboutme" target="_self" class="nav-link active">About me</a>
+        <a href="#projects" target="_self" class="nav-link">Projects</a>
+        <a href="#contacto" target="_self" class="nav-link">Contact</a>
+        <a href="certificados.html" target="_blank" class="nav-link">Certificates</a>
+        <a href="assets/cv/CV-EN.pdf" target="_self" download="CV-EN.pdf" class="nav-link">CV</a>
+    </div>
+
+
+    <!------------------------ PORTFOLIO (Cabecera) ------------------>
+
+    <main class="portfolio-container" id="astar-container">
+        <canvas id="astar"></canvas>  
+        <h1>PORTFOLIO</h1>
+
+        <a href="portoflio.html">
+            <img src="assets/img/Index/questionmark.png" alt="Questionmark">  
+        </a>
+        
+    </main>
+
+
+
+    <!------------------------------ SOBRE MI ------------------------>
+
+    <div class="aboutme" id="aboutme">
+        <div class="container">
+
+            <h1>Pablo Fernández Álvarez</h1>
+            <h2>Game Developer</h2>
+
+            <img src="assets/img/Index/Foto.jpg" style="max-height: 40vh; margin-bottom: 2em;">
+
+            <p>My name is Pablo Fernández, I am a <strong>video game developer</strong>, and I enjoy programming. The purpose of this website is to showcase my portfolio with my most notable projects, developed both individually and collaboratively. I have always had a passion for video games, but I did not discover programming until shortly before entering the video game development degree at the Complutense University of Madrid. Throughout the degree, I have learned many things, but I feel most comfortable when <strong>programming</strong>.</p>
+
+            <p>I consider myself polite, friendly, and responsible. I have experience in <strong>teamwork</strong>, which is essential in this field, and I have completed various projects of different types.</p>
+
+            <p>My goal is to join a company as a <strong>Junior Developer</strong> in a position that allows me to grow, learn, and enhance my skills.</p>
+
+            <a href="assets/cv/CV-EN.pdf" download="CV-ES.pdf">Download CV</a>
+
+        </div>
+    </div>
+
+    <div class="skills">
+        <div class="container">
+
+            <h1>Skills</h1>
+
+            <!-- Lenguajes de programación -->
+            <div class="icon-text">
+
+                <!-- Icono -->
+                <div>
+                    <img src="assets/img/Index/C++Icon.png" alt="Icono C++">
+                </div>
+
+                <!-- Texto -->
+                <div>
+                    <h2>Programming Languages</h2>
+                    <p>The language I feel most comfortable with is <strong>C++</strong>, but I also have good knowledge and experience with <strong>C, C#, Java, Python, and Javascript</strong>.</p>
+                </div>
+
+            </div>
+
+            <!-- Entornos de desarrollo -->
+            <div class="icon-text">
+
+                <!-- Icono -->
+                <div>
+                    <img src="assets/img/Index/VSIcon.png" alt="Icono VS">
+                </div>
+
+                <!-- Texto -->
+                <div>
+                    <h2>Development Softwares/IDEs</h2>
+                    <p>As for the IDEs I have used the most, they include <strong>Visual Studio, Visual Studio Code, and Android Studio</strong>. I have experience in managing projects and solutions in each of them. Regarding game engines, the one I have the most experience with is <strong>Unity</strong>, but I am also learning <strong>Unreal Engine 5</strong> with the goal of focusing on it. I have also used the <strong>SDL</strong> library and am proficient in it for rendering, input, audio, etc. I have experience with <strong>OGRE</strong>, a library with which we developed a 3D game engine in a group project. Lastly, in the "artistic" realm, I have used <strong>Photoshop</strong> and <strong>Blender</strong> quite extensively for 3D modeling.</p>
+                </div>
+
+            </div>
+
+            <!-- Conocimientos generales -->
+            <div class="icon-text">
+
+                <!-- Icono -->
+                <div>
+                    <img src="assets/img/Index/BrainIcon.png" alt="Icono Brain">
+                </div>
+
+                <div>
+                    <h2>General Knowledge</h2>
+                    <p>I have knowledge of the professional game development cycle, version control systems, especially <strong>Git</strong>, in which I have considerable experience. I am familiar with agile production methodologies like <strong>Scrum</strong>, computer architecture, operating systems, design patterns, computer graphics, data structures and algorithms, networked games, and mobile and console game development.</p>
+
+                    <p>I also have basic understanding in areas such as databases, especially non-relational databases, cybersecurity in games, artificial intelligence in games, Big Data, web engineering, and machine learning.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!------------------- Proyectos ------------------->
+
+    <main class="projects-container" id="projects-container">
+        <h1>PROJECTS</h1>
+        <canvas id="colorwave"></canvas>    
+    </main>
+
+    <div class="projects" id="projects">
+        <div class="container">
+
+            <h1>This is a list of my most notable projects. Click on any of them for more information and to see my contribution.</h1>
+
+            <ul>
+                <li>
+                    <a href="customengine.html" target="_self">
+                        <h2>In progress 2D/3D Custom Game Engine</h2>
+                        <p>This is a personal project whose intention is to learn <strong>Game Engine Development</strong>. Based on Shy Engine (Final Degree Project), it provides the essential funcionality for making 2D games.
+                        Shy Engine is composed of three main parts: Core Engine (my part), World Editor, and Scripting System. For this project I isolated the Core Engine and started implementing new functionality. My goal is to learn about Graphics and Physics programming and code my own systems. Also make it 3D. More details in project description.</p>
+                        <img src="assets/img/Index/customengine.png" alt="CustomEngineLogo">
+                    </a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="shy.html" target="_self">
+                        <h2>Shy Engine</h2>
+                        <p>Shy is the name of the project we developed as a team of three for the <strong>final degree project</strong> (TFG). It is a 2D <strong>game engine and editor</strong> designed for <strong>non-programmers</strong>. The objective is to provide a tool for creating <strong>simple 2D games</strong> with a lower learning curve compared to the more commonly used engines today, focusing on individuals with <strong>limited experience</strong> in programming or game development in general.</p>
+                        <img src="assets/img/Index/Shy.png" alt="ShyLogo">
+                    </a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="dome.html" target="_self">
+                        <h2>DOME</h2>
+                        <p>DOME is a <strong>2D survival shooter scroller</strong> where the player controls one of the last survivors in a colony established on the icy planet <strong>Aurora</strong>. Each day, the player must use the daylight hours to <strong>search for essential items</strong> needed to survive in this harsh and cold environment. Additionally, during the night, the cold is so intense that you must return to the shelter to rest and <strong>manage your time and resources</strong>. Will you be able to escape the DOME?</p>
+                        <img src="assets/img/Index/dome.png" alt="DomeLogo">
+                    </a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="ps4.html" target="_self">
+                        <h2>PS4 Projects</h2>
+                        <p>Some minigames programmed using a PS4 Development Kit. They were implemented using CPU for rendering, using two threads: one for logic processing and the other for rendering. The logic thread sends render commands to the render thread, which then processes them. Communication was facilitated through a concurrent queue.</p>
+                        <img src="assets/img/Index/DuckHunt.png" alt="LoveLogo">
+                    </a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="blackjack.html" target="_self">
+                        <h2>Blackjack</h2>
+                        <p>This game is a <strong>version</strong> of the traditional board game <strong>"Blackjack"</strong> with a Spanish deck of cards. It is an <strong>online</strong> game where players join a table and compete against the dealer. The goal is to get a number as close to 21 as possible without exceeding it by adding the values of your cards. It was entirely developed by me using <strong>C, C++, SDL, and Linux</strong>.</p>
+                        <img src="assets/img/Index/blackjack.png" alt="BlackjackLogo">
+                    </a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="portoflio.html" target="_self">
+                        <h2>My Portfolio</h2>
+                        <p>I add my portfolio as another project, as I decided to implement this website from scratch using <strong>HTML, CSS, and Javascript</strong> without using any templates or libraries such as Thymeleaf or Bootstrap. Noteworthy features include the <strong>A* pathfinding algorithm</strong> on the homepage, the <strong>color wave</strong> at the top of this section, the user-customizable color palette and the missile battle. These are interesting programming challenges that bring the website to life and enhance its appearance.</p>
+                        <img src="assets/img/Index/astar.png" alt="PortfolioLogo">
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    
+    <!----------------- Contacto ------------------->
+
+    <div class="contacto" id="contacto">
+        <div class="container">
+            <h1>Contact</h1>
+
+            <div class="info">
+                <div>
+                    <p>Where to find me</p>
+                    <p>Las Rosas, 28017</p>
+                    <p>Madrid, España</p>
+                </div>
+              
+                <div>
+                    <p>Contact information</p>
+                    <p>pablofa01@gmail.com</p>
+                    <p>+34 675456362</p>
+                </div>
+        
+                <div>
+                    <p>Social</p>
+                    <p><a href="https://www.linkedin.com/in/pablo-fern%C3%A1ndez-%C3%A1lvarez-19b889246/">LinkedIn</a></p>
+                    <p><a href="https://github.com/PabloFernandezAl01">GitHub</a></p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <!-- Javascript -->
+
+    <script src="assets/js/Vector2D.js"></script>
+    <script src="assets/js/CanvasWrapper.js"></script>
+    <script src="assets/js/PaletteSelector.js"></script>
+    <script src="assets/js/Translate.js"></script>
+    <script src="assets/js/PriorityQueue.js"></script>
+    <script src="assets/js/Colorwave.js"></script>
+    <script src="assets/js/Astar.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

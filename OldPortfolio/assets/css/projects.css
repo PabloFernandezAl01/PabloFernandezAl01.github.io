@@ -1,0 +1,294 @@
+/* CSS para la vista de proyectos */
+
+@font-face {
+    font-family: 'Portfolio-Font';
+    src: url('../fonts/NixieOne.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-E);
+}
+
+.container {
+    margin-bottom: 1em;
+}
+
+.cover {
+    width: 100%;
+    height: 35vh;
+
+    display: flex;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+    position: sticky;
+    margin-top: 5vh;
+}
+
+.cover h1 {   
+    font-size: 13rem;
+    text-shadow: 4px 4px rgb(86, 86, 86);
+    text-align: center;
+    position: absolute;
+    color: white;
+    font-family: 'Portfolio-Font', sans-serif;
+}
+
+
+/* ---------------------- Links ------------------------ */
+
+.links {
+    font-family: 'Portfolio-Font', sans-serif;
+    background-color: var(--color-D);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.links .container {
+    max-width: 60vw; /* Establecer el ancho máximo al 60% de la ventana */
+    color: #fff;
+}
+
+.links a {
+    display: inline-block;
+    margin: 0.5vw;
+    padding: 1.2rem 1.6rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    background-color: var(--color-A); /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border-radius: 0.6rem;
+    font-weight: bold;
+}
+
+.links a:hover {
+    background-color: var(--color-C);
+}
+
+.links h1 {
+    font-size: 6rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+
+/* ----------------- Descripcion de Shy ------------------- */
+
+.description {
+    font-family: 'Portfolio-Font', sans-serif;
+    background-color: var(--color-C);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.description .container {
+    max-width: 60vw; /* Establecer el ancho máximo al 60% de la ventana */
+    color: #fff;
+}
+
+.description h1 {
+    font-size: 6rem;
+    margin-top: 2vh;
+    margin-bottom: 0vh;
+}
+  
+.description h2 {
+    font-size: 6rem;
+    margin-top: 5vh;
+    margin-bottom: 2rem;
+}
+
+.description h3 {
+    font-size: 3rem;
+    margin-top: 5vh;
+    margin-bottom: 2rem;
+}
+
+.description p {
+    line-height: 1.5;
+    font-size: 1.2rem;
+    font-weight: bold;
+    word-spacing: 5px;
+}
+
+.description strong {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--color-F);
+}
+
+.description ul {
+    list-style: none;
+    line-height: 1.5;
+    font-size: 1.2rem;
+    font-weight: bold;
+    word-spacing: 5px;
+}
+
+.description li {
+    margin: 5px 0;
+    font-size: 2.4rem;
+}
+
+.description a {
+    font-weight: bold;
+    color: var(--color-A);
+}
+
+.description a:hover {
+    background-color: var(--color-D);
+}
+
+.description .extra{
+    margin-bottom: 7vh;
+}
+
+.description .libraries{
+    margin-bottom: 5vh;
+}
+
+.description .libraries img{
+    max-width: 15vw;
+    margin-top: 2vh;
+}
+
+.description .libraries .sdl{
+    margin-right: 5vw;
+}
+
+.description .libraries .box2d{
+    margin-bottom: 5vh;
+}
+
+.description .libraries .Tiled{
+    max-width: 30vw;
+}
+
+.description .libraries .scripting{
+    max-width: 25vw;
+    margin-top: 2vh;
+    border-radius: 8px;
+}
+
+
+/* ----------------- Mi contribución ------------------- */
+
+.contribution {
+    font-family: 'Portfolio-Font', sans-serif;
+    background-color: var(--color-B);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.contribution strong {
+    font-weight: bold;
+    color: var(--color-F); 
+}
+
+
+.contribution .container {
+    max-width: 80vw; /* Establecer el ancho máximo al 60% de la ventana */
+    color: #fff;
+    margin-top: 1em;
+}
+
+.contribution h2 {
+    font-size: 6rem;
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+}
+
+.contribution p {
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: bold;
+    word-spacing: 5px;
+}
+
+.contribution .plus {
+    font-size: 1.6rem;
+    width: 3vw;   
+    height: 2vw;   
+    color: var(--color-A);
+    margin-bottom: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+
+
+/* -------------------- Galeria -------------------- */
+
+.galery {
+    font-family: 'Portfolio-Font', sans-serif;
+    background-color: var(--color-D);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.galery .container {
+    max-width: 60vw;
+    color: #fff;
+}
+
+.galery h1 {
+    font-size: 5rem;
+    margin-top: 2vh;
+}
+
+.galery h2 {
+    font-size: 3rem;
+    margin-top: 2vh;
+}
+
+.galery h3 {
+    font-size: 32px;
+}
+
+.galery .item {
+    margin-bottom: 5vh;
+}
+
+.galery img {
+    max-width: 60vw;
+    max-height: 70vh;
+    border-radius: 5px;
+}
+
+.galery video {
+    max-width: 60vw;
+    max-height: 70vh;
+    border-radius: 5px;
+}
+
+.image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px; /* espacio entre imágenes */
+}
+
+.image-grid img {
+    max-width: 29vw;
+    max-height: 35vh;
+    height: auto;
+    display: block;
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Engine Project</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/projects.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/palette.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/contact.css">
+
+</head>
+
+<body onload="init(); drawColorWave('colorwave', 'projects-container', 180, 80);">
+
+
+    <!---------------------- Barra de navegación --------------------->
+    
+    <div class="navbar">
+
+        <div class="palette-selector">
+            <div class="custom-select" id="custom-select">
+
+              <div class="selected-option">
+                <img src="assets/img/mainpalette.png" alt="Paleta 1">
+              </div>
+
+              <div class="options">
+                <div class="option" data-value="paleta1">
+                  <img src="assets/img/mainpalette.png" alt="Paleta 1">
+                </div>
+                <div class="option" data-value="paleta2">
+                  <img src="assets/img/paletteA.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta3">
+                    <img src="assets/img/paletteB.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta4">
+                    <img src="assets/img/paletteC.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta5">
+                    <img src="assets/img/paletteD.png" alt="Paleta 2">
+                </div>
+              </div>
+
+            </div>
+        </div>
+          
+        <a href="index.html#aboutme" target="_self" class="nav-link active">About me</a>
+        <a href="index.html#projects" target="_self" class="nav-link">Projects</a>
+        <a href="#contacto" target="_self" class="nav-link">Contact</a>
+        <a href="certificados.html" target="_blank" class="nav-link">Certificates</a>
+        <a href="assets/cv/CV-ES.pdf" target="_self" download="CV-ES.pdf" class="nav-link">CV</a>
+    </div>
+
+    <!------------------- Custom 2D/3D Engine ------------------->
+
+    <main class="cover" id="projects-container">
+        <h1>Custom 2D/3D Engine</h1>
+        <canvas id="colorwave"></canvas>    
+    </main>
+
+
+    <!------------------ Links ----------------->
+
+    <div class="links">
+        <div class="container">
+            <h1>Links</h1>
+            <a href="http://github.com/PabloFernandezAl01/OwnEngine">Repository</a>
+        </div>
+    </div>
+
+    <!------------------ Descripción ------------------>
+
+    <div class="description">
+        <div class="container">
+
+            <h2>Description</h2>
+            <p>The goal of this personal project is to learn <strong>game engine development</strong>. For that, I isolated the Engine part of my final degree project and started making enhacements. As a brief summary, the engine is divided into several parts: <strong>Core/Utilities</strong>, <strong>IO System</strong> with support for mouse, keyboard and multiple controllers, <strong>Physics System</strong> (uses Box2D), <strong>Entity-Component-System</strong> (The runtime arquitecture model), <strong>Rendering System</strong> (uses SDLImage) and <strong>Sound System</strong> (uses SDLMixer)</p>
+            
+            <p>
+                My goal for this project is divided in 3 main parts:<br>
+                1.- Improve the 2D engine and <strong>create some tools</strong>, make a <strong>simple game</strong> with it to showcase it's posibilities.<br>
+                2.- Make it 3D using OGRE and Bullet3D/PhysX and create a simple scene with all the 3D additions.<br>
+                3.- Implement my own <strong>graphics API/Layer</strong> over OpenGL/Vulkan (Materials, Modles, Rendering Pipelines, Light, Animations.. etc.).
+            </p>
+
+            <h3>Learning new stuff</h3>
+            <p>
+                + Learned to use <strong>Memory deleaker</strong> to track memory leaks deeply<br>
+                + Learned how to use a <strong>Profiler tool</strong><br>
+                + Learned about <strong>Concurrent Programming</strong>
+            </p>
+
+            <h3>Improving the 2D engine / New tools</h3>
+            <p>
+                + Removed <strong>scripting module</strong> from the engine<br>
+                + Created <strong>automation script</strong> to build dependencies and compile the engine<br>
+                + Fixed some bugs in <strong>physics components</strong> such as BoxBody and CircleBody<br>
+                + Added <strong>world raycast</strong> to the engine<br>
+                + Added <strong>breakable system</strong> using <strong>voronoi subdivision algorithm</strong><br>
+                + Added a proper <strong>render ordering system</strong><br>
+                + Added component <strong>"AtlasImage"</strong> for rendering a <strong>custom texture</strong> composed of diferent images<br>
+                + Added component <strong>"CustomBody"</strong> to create Box2D polygons<br>
+                + Added component <strong>"CustomImage"</strong> for rendering images with <strong>custom texture coordinates</strong> so the engine user can draw textured polygons<br>
+            </p>
+
+           <h3>Cool things about the Angry Birds clone:</h3>
+            <p>
+                + Trajectory <strong>prediction</strong> system with Raycast<br>
+                + Used <strong>tileson lilbrary</strong> to read maps from TILED (TILED works as my world editor)<br>
+                + The blocks used to build the level have Breakable components so are destructible by the player (bird)
+            </p>
+
+            <div class="libraries">
+                <img class="Tiled" src="assets/img/CustomEngine/Tiledmap.jpg" alt="TILED">
+            </div>
+
+        </div>
+    </div>
+
+
+    <!------------------ Galería ------------------>
+
+    <div class="galery">
+        <div class="container">
+
+            <h1>Gallery</h1>
+            <h2>2D</h2>
+
+            <div class="item">
+                <h3>Angry birds gameplay</h3>
+                <video autoplay loop muted playsinline>
+                    <source src="assets/videos/Gameplay.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+
+            <div class="item">
+                <h3>Levels</h3>
+                <div class="image-grid">
+                    <img src="assets/img/CustomEngine/Level1.PNG" alt="Arriba izquierda">
+                    <img src="assets/img/CustomEngine/Level2.PNG" alt="Arriba derecha">
+                    <img src="assets/img/CustomEngine/Level3.PNG" alt="Abajo izquierda">
+                    <img src="assets/img/CustomEngine/Level4.PNG" alt="Abajo derecha">
+                </div>
+            </div>
+
+            <div class="item">
+                <h3>Breakable system with Voronoi subdivision</h3>
+                <video autoplay loop muted playsinline>
+                    <source src="assets/videos/Breakable.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+
+            <div class="item">
+                <h3>Parallax</h3>
+                <video autoplay loop muted playsinline>
+                    <source src="assets/videos/Parallax.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+
+        </div>
+    </div>
+    
+    <!----------------- Contacto ------------------->
+
+    <div class="contacto" id="contacto">
+        <div class="container">
+            <h1>Contact</h1>
+
+            <div class="info">
+                <div>
+                    <p>Where to find me</p>
+                    <p>Las Rosas, 28017</p>
+                    <p>Madrid, España</p>
+                </div>
+              
+                <div>
+                    <p>Contact information</p>
+                    <p>pablofa01@gmail.com</p>
+                    <p>+34 675456362</p>
+                </div>
+        
+                <div>
+                    <p>Social</p>
+                    <p><a href="https://www.linkedin.com/in/pablo-fern%C3%A1ndez-%C3%A1lvarez-19b889246/">LinkedIn</a></p>
+                    <p><a href="https://github.com/PabloFernandezAl01">GitHub</a></p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Javascript -->
+    <script src="assets/js/CanvasWrapper.js"></script>
+    <script src="assets/js/PaletteSelector.js"></script>
+    <script src="assets/js/Colorwave.js"></script>
+    <script src="assets/js/ContributionsButton.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

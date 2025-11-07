@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShyEngine Project</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/projects.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/palette.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/contact.css">
+
+</head>
+
+<body onload="init(); drawColorWave('colorwave', 'projects-container', 180, 80);">
+
+
+    <!---------------------- Barra de navegación --------------------->
+    
+    <div class="navbar">
+
+        <div class="palette-selector">
+            <div class="custom-select" id="custom-select">
+
+              <div class="selected-option">
+                <img src="assets/img/mainpalette.png" alt="Paleta 1">
+              </div>
+
+              <div class="options">
+                <div class="option" data-value="paleta1">
+                  <img src="assets/img/mainpalette.png" alt="Paleta 1">
+                </div>
+                <div class="option" data-value="paleta2">
+                  <img src="assets/img/paletteA.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta3">
+                    <img src="assets/img/paletteB.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta4">
+                    <img src="assets/img/paletteC.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta5">
+                    <img src="assets/img/paletteD.png" alt="Paleta 2">
+                </div>
+              </div>
+
+            </div>
+        </div>
+          
+        <a href="index.html#aboutme" target="_self" class="nav-link active">About me</a>
+        <a href="index.html#projects" target="_self" class="nav-link">Projects</a>
+        <a href="#contacto" target="_self" class="nav-link">Contact</a>
+        <a href="certificados.html" target="_blank" class="nav-link">Certificates</a>
+        <a href="assets/cv/CV-ES.pdf" target="_self" download="CV-ES.pdf" class="nav-link">CV</a>
+    </div>
+
+    <!------------------- Shy ------------------->
+
+    <main class="cover" id="projects-container">
+        <h1>Shy</h1>
+        <canvas id="colorwave"></canvas>    
+    </main>
+
+
+    <!------------------ Links ----------------->
+
+    <div class="links">
+        <div class="container">
+            <h1>Links</h1>
+            <a href="assets/memoria/Memoria.pdf" download="Memoria.pdf">Project's memory</a>
+            <a href="https://github.com/yojhansg/ShyEngine">Repository</a>
+        </div>
+    </div>
+
+    <!------------------ Descripción ------------------>
+
+    <div class="description">
+        <div class="container">
+
+            <h2>Description</h2>
+            <p>Shy is the name of the project we developed as a team of three for the <strong>final degree project</strong> (TFG). It is a 2D <strong>game engine and editor</strong> designed for <strong>non-programmers</strong>. The objective is to provide a tool for creating <strong>simple 2D games</strong> with a lower learning curve compared to the more commonly used engines today, focusing on individuals with <strong>limited experience</strong> in programming or game development in general. Additionally, the game can be executed directly from the editor, speeding up the development process, and <strong>executable versions</strong> can be generated automatically (Build).</p>
+
+            <ul>The development of the project was divided into three main parts: <strong>engine, editor and scripting system</strong>:
+                <p class="extra">The engine and editor of Shy are not integrated, so the solution to communicate them is a <strong>data-driven engine</strong>. This means that everything done in the editor is generated and stored in files, and the engine reads them to dynamically create scenes, entities, prefabs, etc., during execution. Additionally, it's worth mentioning that the entire project was developed in <strong>C++</strong> using <strong>Visual Studio</strong> and a set of necessary libraries for both the engine and the editor.</p>
+                <li>Engine
+                    <p>Regarding the engine, it is divided into several modules that contain the necessary <strong>technology</strong> for different purposes. The most important modules include a resource manager, audio, input, physics, rendering, gameplay architecture (based on entities and components), and native components.</p>
+                    <p>The engine features a reflection system through <strong>tags</strong> (similar to Unreal) so that the editor's scripting system knows its API and can call functions from each of its modules.</p>
+                    <p>The libraries used by the engine are <strong>SDL</strong> for rendering (images, text) and input, and <strong>Box2D</strong> for physics.</p>
+                    <div class="libraries">
+                        <img class="sdl" src="assets/img/Shy/sdl.png" alt="SDL">
+                        <img class="box2d" src="assets/img/Shy/box2d.png" alt="Box2D">
+                    </div>
+                </li>
+                <li>Editor
+                    <p>As for the editor, it uses the <strong>ImGUI</strong> library for the user interface, with which we implemented a window system to organize its functionality. It is divided into three main views, <strong>project manager, main view, and script editor</strong>. The main view includes windows for the <strong>viewport</strong> (the game window), the <strong>entity hierarchy</strong> of the scene, <strong>entity components</strong>, <strong>project file explorer</strong>, <strong>project preferences</strong>, etc.</p>
+                    <div class="libraries">
+                        <img src="assets/img/Shy/imgui.png" alt="ImGUI">
+                    </div>
+                </li>
+                <li>Scripting System
+                    <p>This scripting language is a <strong>node-based system</strong> primarily designed to be used in a <strong>visual</strong> manner, inspired by the Blueprints system in Unreal Engine. The execution of the language follows a <strong>flow</strong>, allowing the order of node execution to be established, ensuring that the script behaves consistently.</p>
+                    <div class="libraries">
+                        <img class="scripting" src="assets/img/Shy/scripting.jpg" alt="Scripting">
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+    <!------------------ Contribucion ------------------>
+
+    <div class="contribution">
+        <div class="container">
+            <h2>Contribution</h2>
+
+            <p>My contribution to the project is largely in the engine part. The project is quite extensive, and I have contributed to many aspects, so detailing everything can be lengthy.</p>
+            <p>However, you can click on the + to see my contribution in detail.</p>
+
+            <button class="plus" id="toggleButton">+</button>
+
+            <div id="content" class="hidden">
+
+                <p>My contribution to the project primarily focused on the engine. Initially, I researched potential libraries for both physics and audio integration into the engine. We decided to use SDL for graphics, as we were familiar with it from our degree and it posed no limitations for 2D game development.</p>
+
+                <p>Once we chose Box2D for physics and SDLMixer for audio, I began setting up the project using Visual Studio 2022. I organized the solution into several projects: physics, audio, input, render, and implemented each of them. I started with the Input project, which took some time as I implemented support for keyboard, controller, and multiple controllers. Once finished, I moved on to the audio project. With the help of SDLMixer documentation, I implemented support for playing sound effects/short sounds and music. Following that, I tackled the physics project, dedicating more time to learn about the library by reading articles and documentation due to its complexity. I also explored the option of visualizing the colliders of physical bodies, a feature beneficial for both engine development and user understanding. While Box2D's documentation had examples using OpenGL for drawing, I had to implement those drawing functions with SDL since our engine uses SDL.</p>
+
+                <p>Next, I implemented the ECS (EntityComponent-System) project, crucial for testing and visualizing initial scenes. I also implemented the main loop of the engine with a fixed time interval for the physical world. With the main projects implemented, I started developing the first basic components such as Transform, Image, PhysicBody, and SoundEmitter.</p>
+
+                <p>For a period, I focused on expanding and testing the components and functionality implemented in the projects. For example, I added a collision matrix to the physics project for collision filtering, implemented various types of PhysicBody (colliders with special shapes), synchronized physical bodies with entity transformations, collision detection, pixel-to-physics unit conversion, a new ParticleSystem component for particle systems, implemented a resource manager to avoid loading duplicate resources, enhanced sound components to include horizontal panning and 2D sound, among other features.</p>
+
+                <p>As the editor progressed, I implemented logic to read the data generated by the editor, such as prefabs. Additionally, I implemented the project management window in the editor, added error handling throughout the engine to ensure continuous and predictable execution by printing errors to the standard output. I also introduced error handling in the editor, logging error information during execution to a log file. I created a directory structure for both the editor and the engine, making the development cycle more comfortable. I implemented a preferences window to adjust engine parameters, such as gravity of the physical world, audio engine frequency, game window size, among many others. I implemented scene flow, saving the last opened scene, displaying the viewport in a special way if no scene is open, and showing the name of the current scene along with its corresponding content in the viewport.</p>
+
+                <p>Finally, I changed the SDL usage for controller implementation in the Input project from SDLJoystick to SDLGameController, as it is better suited for controllers. I added more parameters to the preferences window, especially for Input, quick key binding. I also improved the project management window to allow project deletion and sorting projects by last opening order.</p>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!------------------ Galería ------------------>
+
+    <div class="galery">
+        <div class="container">
+
+            <h2>Gallery</h2>
+
+            <div class="item">
+                <h3>Editor main view</h3>
+                <img src="assets/img/Shy/editor.PNG">
+            </div>
+
+            <div class="item">
+                <h3>Editor scripting view</h3>
+                <img src="assets/img/Shy/script.PNG">
+            </div>
+
+            <div class="item">
+                <h3>Projects manager</h3>
+                <img src="assets/img/Shy/projects.PNG">
+            </div>
+
+            <h2>Games developed using Shy</h2>
+
+            <div class="item">
+                <h3>2D Platform Game</h3>
+                <a href="https://youtu.be/45KvW7YF6mU" target="_blank">
+                    <img src="assets/img/Shy/plataformas.png">
+                </a>
+            </div>
+
+            <div class="item">
+                <h3>Space Invaders Clone</h3>
+                <a href="https://youtu.be/KOFQnh82AHU" target="_blank">
+                    <img src="assets/img/Shy/spaceInvaders.png">
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    
+    <!----------------- Contacto ------------------->
+
+    <div class="contacto" id="contacto">
+        <div class="container">
+            <h1>Contact</h1>
+
+            <div class="info">
+                <div>
+                    <p>Where to find me</p>
+                    <p>Las Rosas, 28017</p>
+                    <p>Madrid, España</p>
+                </div>
+              
+                <div>
+                    <p>Contact information</p>
+                    <p>pablofa01@gmail.com</p>
+                    <p>+34 675456362</p>
+                </div>
+        
+                <div>
+                    <p>Social</p>
+                    <p><a href="https://www.linkedin.com/in/pablo-fern%C3%A1ndez-%C3%A1lvarez-19b889246/">LinkedIn</a></p>
+                    <p><a href="https://github.com/PabloFernandezAl01">GitHub</a></p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Javascript -->
+    <script src="assets/js/CanvasWrapper.js"></script>
+    <script src="assets/js/PaletteSelector.js"></script>
+    <script src="assets/js/Colorwave.js"></script>
+    <script src="assets/js/ContributionsButton.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

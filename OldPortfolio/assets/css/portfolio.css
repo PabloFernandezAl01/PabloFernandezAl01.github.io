@@ -1,0 +1,56 @@
+/* --------------------- PORTFOLIO (Cabecera) --------------------*/
+
+.astar {
+    width: 60vw;
+    height: 60vh;
+
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin: 1vh auto;
+}
+
+#astar {
+    border-radius: 8px;
+}
+
+.galery p {
+    line-height: 1.5;
+    font-size: 20px;
+    font-weight: bold;
+    word-spacing: 5px;
+}
+
+.galery strong {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-F);
+}
+
+.color {
+    width: 60vw;
+    height: 60vh;
+
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin: 1vh auto;
+}
+
+#color {
+    border-radius: 8px;
+}
+
+.shotfight {
+    width: 60vw;
+    height: 60vh;
+
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin: 1vh auto;
+}
+
+#shotfight {
+    border-radius: 8px;
+}

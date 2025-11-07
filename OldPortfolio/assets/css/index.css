@@ -1,0 +1,275 @@
+/* CSS para la vista principal */
+
+@font-face {
+    font-family: 'Portfolio-Font';
+    src: url('../fonts/NixieOne.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-E);
+}
+
+
+/* --------------------- PORTFOLIO (Cabecera) --------------------*/
+
+.portfolio-container {
+    width: 100%;
+    height: 50vh;
+
+    display: flex;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+    position: sticky;
+    margin-top: 5vh;
+}
+
+.portfolio-container h1 {   
+    font-size: 13rem;
+    text-shadow: 0.3rem 0.3rem rgb(86, 86, 86);
+    text-align: center;
+    position: absolute;
+    color: white;
+    font-family: 'Portfolio-Font', sans-serif;
+}
+
+.portfolio-container img  {
+    position: absolute;
+    top: 2vh;
+    right: 1vw;
+    width: 4vw;
+    height: auto; /* Esto mantiene la relación de aspecto */
+    z-index: 2;
+}
+
+
+
+
+/* ------------------------ SOBRE MI -------------------------*/
+
+.aboutme {
+    font-family: 'Portfolio-Font', sans-serif;
+    background-color: var(--color-C);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.aboutme .container {
+    max-width: 60vw; /* Establecer el ancho máximo al 60% de la ventana */
+    color: #fff;
+}
+
+.aboutme h1 {
+    font-size: 6rem;
+    margin-top: 2vh;
+    margin-bottom: 0vh;
+}
+  
+.aboutme h2 {
+    font-size: 3rem;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+}
+
+.aboutme p {
+    line-height: 1.5;
+    font-size: 1.2rem;
+    font-weight: bold;
+    word-spacing: 0.3rem;
+}
+
+.aboutme strong {
+    font-weight: bold;
+    color: var(--color-F); /* Color de resaltado personalizado */
+}
+
+.aboutme a {
+    display: inline-block;
+    margin: 0.5vw;
+    padding: 1.2rem 1.6rem;
+    text-decoration: none;
+    background-color: var(--color-A); /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border-radius: 0.6rem;
+    font-weight: bold;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+}
+
+.aboutme a:hover {
+    background-color: var(--color-D);
+}
+
+
+
+.skills {
+    font-family: 'Portfolio-Font', sans-serif;
+    background-color: var(--color-D);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.skills .container {
+    max-width: 60vw;
+    color: #fff;
+}
+
+.skills h1 {
+    font-size: 6rem;
+    margin-top: 2vh;
+    margin-bottom: 0vh;
+}
+
+.skills h2 {
+    font-size: 3rem;
+    margin-top: 2vh;
+}
+
+.skills p {
+    line-height: 1.5;
+    font-size: 1.2rem;
+    font-weight: bold;
+    word-spacing: 0.3rem;
+}
+
+.skills .icon-text {
+    margin-top: 7vh;
+    margin-bottom: 7vh;
+}
+
+
+.skills img {
+    width: 10vh;
+    max-height: 15vh;
+    margin-bottom: 0.6rem;
+}
+
+.skills strong {
+    font-weight: bold;
+    color: var(--color-F); 
+}
+
+
+
+
+/* ------------------- PROYECTOS ------------------- */
+
+.projects-container {
+    width: 100%;
+    height: 30vh;
+
+    display: flex;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+    margin-top: 1em;
+}
+
+.projects-container h1 {   
+    font-size: 9rem;
+    text-shadow: 0.3rem 0.3rem rgb(86, 86, 86);
+    text-align: center;
+    position: absolute;
+    color: white;
+    font-family: 'Portfolio-Font', sans-serif;
+}
+
+.projects {
+    font-family: 'Portfolio-Font', sans-serif;
+    background-color: var(--color-B);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.projects strong {
+    font-weight: bold;
+    color: var(--color-F); 
+}
+
+
+.projects .container {
+    max-width: 80vw; /* Establecer el ancho máximo al 60% de la ventana */
+    color: #fff;
+    margin-top: 2em;
+}
+
+.projects a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.projects ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.projects p {
+    line-height: 1.5;
+    font-size: 1.2rem;
+    font-weight: bold;
+    word-spacing: 0.3rem;
+}
+
+.projects h1 {
+    line-height: 1.5;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+
+
+.projects .container li {
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: padding 0.3s;
+
+    display: flex;
+    align-items: center;
+    margin-top: 2em;
+    margin-bottom: 3em;
+    background-color: var(--color-D);
+    width: 80vw;
+    border-radius: 0.6rem;
+}
+
+.projects .container li:hover {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    transition: 0.3s;
+}
+
+.projects .container li img {
+    max-width: 20vh;
+    max-height: 20vh;
+    margin: 1em;
+    border-radius: 0.2rem;
+}
+
+.projects .container li p {
+    line-height: 1.5;
+    font-size: 1.2rem;
+    font-weight: bold;
+    word-spacing: 0.3rem;
+    text-align: center;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+.projects .container li h2 {
+    line-height: 1.5;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--color-A); /* Color de resaltado personalizado */
+    margin: 2vh 0 0 0;
+}
+
+

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackJack Project</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/projects.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/palette.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/contact.css">
+
+</head>
+
+<body onload="init(); drawColorWave('colorwave', 'projects-container', 180, 80);">
+
+
+    <!---------------------- Barra de navegación --------------------->
+    
+    <div class="navbar">
+
+        <div class="palette-selector">
+            <div class="custom-select" id="custom-select">
+
+              <div class="selected-option">
+                <img src="assets/img/mainpalette.png" alt="Paleta 1">
+              </div>
+
+              <div class="options">
+                <div class="option" data-value="paleta1">
+                  <img src="assets/img/mainpalette.png" alt="Paleta 1">
+                </div>
+                <div class="option" data-value="paleta2">
+                  <img src="assets/img/paletteA.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta3">
+                    <img src="assets/img/paletteB.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta4">
+                    <img src="assets/img/paletteC.png" alt="Paleta 2">
+                </div>
+                <div class="option" data-value="paleta5">
+                    <img src="assets/img/paletteD.png" alt="Paleta 2">
+                </div>
+              </div>
+
+            </div>
+        </div>
+          
+        <a href="index.html#aboutme" target="_self" class="nav-link active">About me</a>
+        <a href="index.html#projects" target="_self" class="nav-link">Projects</a>
+        <a href="#contacto" target="_self" class="nav-link">Contact</a>
+        <a href="certificados.html" target="_blank" class="nav-link">Certificates</a>
+        <a href="assets/cv/CV-ES.pdf" target="_self" download="CV-ES.pdf" class="nav-link">CV</a>
+    </div>
+
+    <!------------------- Blackjack ------------------->
+
+    <main class="cover" id="projects-container">
+        <h1>Blackjack</h1>
+        <canvas id="colorwave"></canvas>    
+    </main>
+
+
+    <!------------------ Links ----------------->
+
+    <div class="links">
+        <div class="container">
+            <h1>Links</h1>
+            <a href="https://github.com/PabloFernandezAl01/RVR-PabloFernandezAlvarez" target="_blank">Repository</a>
+        </div>
+    </div>
+
+    <!------------------ Descripción ------------------>
+
+    <div class="description">
+        <div class="container">
+
+            <h2>Description</h2>
+            <p>This game is a <strong>version</strong> of the traditional card game <strong>"Blackjack"</strong> with a Spanish deck of cards. It is an <strong>online</strong> game where players join a table and compete against the dealer. The objective is to get a number as close to 21 as possible without exceeding it by adding the values of your cards. It was developed entirely by me using <strong>C, C++, SDL, and Linux</strong>.</p>
+
+            <p>The game follows the <strong>client-server</strong> model, and the network model is <strong>TCP</strong> since, being a card game, it is necessary for information to be <strong>consistent</strong>. Card and board information is <strong>serialized</strong> and sent using the Linux <strong>Sockets</strong> API.</p>
+
+            <p>In the <a href="https://github.com/PabloFernandezAl01/RVR-PabloFernandezAlvarez/tree/main" target="_blank">repository</a>, you can find the entire source code of the game. The repository was used for both practices and the final project (Blackjack). What matters here is the "ProyectoFinal" directory.</p>
+
+        </div>
+    </div>
+
+
+    <!------------------ Contribucion ------------------>
+
+    <div class="contribution">
+        <div class="container">
+            <h2>Contribution</h2>
+
+            <p>The whole project was developed by me.</p>
+
+        </div>
+    </div>
+
+
+    <!------------------ Galería ------------------>
+
+    <div class="galery">
+        <div class="container">
+
+            <h2>Gallery</h2>
+
+            <div class="item">
+                <h3>Blackjack Menu</h3>
+                <img src="assets/img/Blackjack/blackjackmenu.png">
+            </div>
+
+            <div class="item">
+                <h3>Blackjack In-Game</h3>
+                <img src="assets/img/Blackjack/blackjackgame.png">
+            </div>
+
+            <div class="item">
+                <h3>BlackJack Win Screen</h3>
+                <img src="assets/img/Blackjack/blackjackwin.png">
+            </div>
+
+        </div>
+    </div>
+
+
+    <!----------------- Contacto ------------------->
+
+    <div class="contacto" id="contacto">
+        <div class="container">
+            <h1>Contact</h1>
+
+            <div class="info">
+                <div>
+                    <p>Where to find me</p>
+                    <p>Las Rosas, 28017</p>
+                    <p>Madrid, España</p>
+                </div>
+              
+                <div>
+                    <p>Contact information</p>
+                    <p>pablofa01@gmail.com</p>
+                    <p>+34 675456362</p>
+                </div>
+        
+                <div>
+                    <p>Social</p>
+                    <p><a href="https://www.linkedin.com/in/pablo-fern%C3%A1ndez-%C3%A1lvarez-19b889246/">LinkedIn</a></p>
+                    <p><a href="https://github.com/PabloFernandezAl01">GitHub</a></p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Javascript -->
+    <script src="assets/js/CanvasWrapper.js"></script>
+    <script src="assets/js/PaletteSelector.js"></script>
+    <script src="assets/js/Colorwave.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
