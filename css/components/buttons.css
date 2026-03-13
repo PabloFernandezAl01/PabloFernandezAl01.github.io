@@ -1,0 +1,22 @@
+.btn-custom {
+    background-color: #fdd052;
+    border: 2px solid var(--text-dark);
+    border-radius: 9px;
+    padding: 23px 47px;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-control-custom {
+    background-color: var(--light-bg);
+    border: 2px solid var(--text-dark);
+    border-radius: 9px;
+    height: 76px;
+    font-style: italic;
+}

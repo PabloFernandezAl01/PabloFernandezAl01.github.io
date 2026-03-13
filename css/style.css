@@ -1,0 +1,28 @@
+/* === Entry point — imports all partials === */
+
+/* Base */
+@import "base/variables.css";
+@import "base/typography.css";
+
+/* Vendor overrides */
+@import "vendor/bootstrap-overrides.css";
+
+/* Layout */
+@import "layout/grid.css";
+@import "layout/banner.css";
+@import "layout/sections.css";
+
+/* Components */
+@import "components/buttons.css";
+@import "components/cards.css";
+@import "components/swiper.css";
+@import "components/menu.css";
+@import "components/footer.css";
+
+/* Animations */
+@import "animations/aos-clip.css";
+@import "animations/aos-text.css";
+
+/* Utilities */
+@import "utilities/colors.css";
+@import "utilities/responsive.css";

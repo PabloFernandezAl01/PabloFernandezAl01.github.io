@@ -1,0 +1,38 @@
+/* ===== Custom palette ===== */
+:root {
+    --primary-color: #414c31;
+    --primary-subtle-color: #586642;
+    --secondary-color: #f9c32c;
+    --light-bg: #fcf5e1;
+    --light-bg-alt: #f3ead3;
+    --text-dark: #37342e;
+    --text-light: #fdf5e1;
+    --text-muted: #a09578;
+}
+
+/* ===== Bootstrap token overrides ===== */
+:root {
+    --bs-blue: #4BA1A7;
+    --bs-red: #F0756C;
+    --bs-orange: #f9c32c;
+    --bs-yellow: #EFEAEA;
+    --bs-green: #F5F8F1;
+    --bs-teal: #EFE8EF;
+    --bs-cyan: #F3F3F3;
+    --bs-black: #111111;
+    --bs-white: #FFFFFF;
+    --bs-gray: #777777;
+
+    --bs-link-color: #111111;
+    --bs-link-color-rgb: 17, 17, 17;
+    --bs-link-hover-color: #F0756C;
+    --bs-link-hover-color-rgb: 240, 117, 108;
+
+    --bs-primary: #f9c32c;
+    --bs-primary-rgb: 240, 117, 108;
+    --bs-body-color: #111111;
+    --bs-info: #C3C3C3;
+    --bs-light-text-emphasis: #c3c3c3;
+
+    --swiper-theme-color: #414c31;
+}

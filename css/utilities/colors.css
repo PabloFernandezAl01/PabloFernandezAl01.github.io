@@ -1,0 +1,35 @@
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-primary-subtle {
+    background-color: var(--primary-subtle-color) !important;
+}
+
+.bg-light-custom {
+    background-color: var(--light-bg);
+}
+
+.bg-light-alt {
+    background-color: var(--light-bg-alt);
+}
+
+.bg-dark-custom {
+    background-color: var(--primary-color);
+}
+
+.bg-yellow {
+    background-color: var(--secondary-color);
+}
+
+.text-yellow {
+    color: var(--secondary-color);
+}
+
+.text-muted-custom {
+    color: var(--text-muted);
+}
+
+.text-light-custom {
+    color: var(--text-light);
+}

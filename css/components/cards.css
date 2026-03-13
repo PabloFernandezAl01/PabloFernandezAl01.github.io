@@ -1,0 +1,41 @@
+.card-custom {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card-custom:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    border-radius: 20px 20px 0 0;
+}
+
+.slider-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+    background-color: var(--primary-color);
+}
+
+.slider-dot.default {
+    background-color: rgba(65, 76, 49, 0.3);
+}
+
+.testimonial-quote {
+    font-size: 288px;
+    line-height: 0;
+    color: #f9efd5;
+}
+
+.testimonial-card {
+    height: 349px;
+}

@@ -1,0 +1,21 @@
+.banner-content {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 60px;
+}
+
+.banner-image {
+    margin-top: -200px;
+}
+
+@media (max-width: 768px) {
+    .banner-content {
+        position: relative;
+        margin-top: 60px;
+    }
+
+    .banner-image {
+        margin-top: 0;
+    }
+}
