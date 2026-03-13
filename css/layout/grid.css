@@ -33,3 +33,9 @@
     transform: scale(1.03);
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
 }
+
+#certificatesGrid img {
+    height: 380px;
+    object-fit: contain;
+    background-color: var(--light-bg-alt);
+}
