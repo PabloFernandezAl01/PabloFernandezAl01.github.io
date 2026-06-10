@@ -1,7 +1,3 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Project Overview
 
 This is a **static personal portfolio website** for Pablo Fernández (game developer / C++ programmer). There is no build system, package manager, or server-side code — it's plain HTML, CSS, and JavaScript served directly.
